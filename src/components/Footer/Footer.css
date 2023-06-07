@@ -1,0 +1,45 @@
+.footer {
+  padding: 79px 70px 20px;
+  background-color: #fafafa;
+}
+
+.footer__text {
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 15.73px;
+}
+
+.footer__title {
+  color: #a0a0a0;
+  text-align: center;
+  margin: 0 0 20px;
+  padding: 0;
+}
+
+.footer__container {
+  display: flex;
+  align-items: flex-end;
+  margin: 20px 0 0;
+}
+
+.footer__year {
+  margin: 0;
+  padding: 0;
+  flex-grow: 1;
+}
+
+.footer__link {
+  color: #000;
+  text-decoration: none;
+  margin: 0 20px 0 0;
+  transition: 0.5s ease;
+}
+
+.footer__link:hover {
+  opacity: .6;
+}
+
+.footer__link:last-of-type {
+  margin: 0;
+}
+

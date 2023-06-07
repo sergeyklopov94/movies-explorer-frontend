@@ -1,0 +1,13 @@
+.App {
+  background-color: #fff;
+  color: #000;
+  min-width: 320px;
+  min-height: 100vh;
+  font-family: Inter, 'Times New Roman', sans-serif;
+  font-weight: 400;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-text-size-adjust: 100%;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+}

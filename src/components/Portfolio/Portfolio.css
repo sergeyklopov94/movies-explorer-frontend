@@ -1,0 +1,20 @@
+.portfolio {
+  background-color: inherit;
+  padding: 0 70px 125px;
+}
+
+.portfolio__title {
+  color: #a0a0a0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 0;
+  margin: 0 0 30px;
+}
+
+.portfolio__link-list {
+  list-style: none;
+  margin: 0 ;
+  padding: 0;
+}
+

@@ -1,0 +1,30 @@
+.portfolio__link-container {
+  display: flex;
+  justify-content: stretch;
+  transition: 0.5s ease;
+}
+
+.portfolio__link-container:hover {
+  opacity: .6;
+}
+
+.portfolio__link {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+  color: #000;
+  text-decoration: none;
+  margin: 0;
+  padding: 20px 0 19px;
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+}
+
+.portfolio__logo {
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 60px;
+  letter-spacing: -0.04em;
+}
