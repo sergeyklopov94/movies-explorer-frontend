@@ -6,8 +6,8 @@ import { Link } from 'react-router-dom';
 function Header() {
   return (
     <header className="header">
-      <Link to="/">
-        <img className="header__logo" src={headerLogo} alt="Логотип" />
+      <Link to="/" className="header_link">
+        <img className="header__logo" src={headerLogo} alt="Логотип"/>
       </Link>
       <Navigation/>
     </header>

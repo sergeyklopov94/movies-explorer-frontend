@@ -1,6 +1,7 @@
 .aboutProject {
   padding: 110px 70px;
   background-color: inherit;
+  transition: 0.5s ease;
 }
 
 .about-project__table {
@@ -8,10 +9,12 @@
   padding: 0;
   margin: 70px 0 110px;
   display: flex;
+  transition: 0.5s ease;
 }
 
 .about-project__column {
   margin: 0 40px 0 0;
+  transition: 0.5s ease;
 }
 
 .about-project__column:last-of-type {
@@ -25,6 +28,7 @@
   letter-spacing: -0.04em;
   padding: 0;
   margin: 0 0 26px;
+  transition: 0.5s ease;
 }
 
 .about-project__column-text {
@@ -32,6 +36,7 @@
   line-height: 20px;
   padding: 0;
   margin: 0;
+  transition: 0.5s ease;
 }
 
 .aboutProject__time {
@@ -41,6 +46,7 @@
   row-gap: 14px;
   grid-template-columns: 20% 80%;
   grid-template-rows: 36px 17px;
+  transition: 0.5s ease;
 }
 
 .aboutProject__time-text {
@@ -51,6 +57,7 @@
   align-items: center;
   padding: 0;
   margin: 0;
+  transition: 0.5s ease;
 }
 
 .aboutProject__time-text_bold {
@@ -67,4 +74,68 @@
 
 .aboutProject__time-text_max {
   background-color: #f2f2f2;
+}
+
+@media screen and (max-width: 904px){
+  .aboutProject {
+    padding: 90px 50px;
+  }
+
+  .about-project__table {
+    margin-bottom: 93px;
+  }
+
+  .about-project__column {
+    margin-right: 30px;
+  }
+
+  .about-project__column-header {
+    margin: 0 0 22px;
+  }
+
+  .about-project__column-text {
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .aboutProject__time {
+    grid-template-columns: 25% 75%;
+  }
+}
+
+@media screen and (max-width: 565px){
+  .aboutProject {
+    padding: 70px 18px;
+  }
+
+  .about-project__table {
+    margin: 60px 0 60px;
+    flex-direction: column;
+  }
+
+  .about-project__column {
+    margin: 0 0 56px;
+  }
+
+  .about-project__column-header {
+    font-size: 18px;
+    line-height: 22px;
+    margin: 0 0 16px;
+  }
+
+  .about-project__column-text {
+    font-size: 11px;
+    line-height: 16px;
+  }
+
+  .aboutProject__time-text {
+    font-size: 11px;
+    line-height: 13px;
+  }
+
+  .aboutProject__time {
+    grid-template-columns: 35% 65%;
+    grid-template-rows: 35px 13px;
+    row-gap: 10px;
+  }
 }

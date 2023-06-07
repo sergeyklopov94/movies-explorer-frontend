@@ -20,6 +20,7 @@
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
+  transition: 0.5s ease;
 }
 
 .portfolio__logo {
@@ -27,4 +28,27 @@
   font-size: 30px;
   line-height: 60px;
   letter-spacing: -0.04em;
+  transition: 0.5s ease;
+}
+
+@media screen and (max-width: 904px){
+  .portfolio__link {
+    font-size: 28px;
+  }
+
+  .portfolio__logo {
+    font-size: 28px;
+  }
+}
+
+@media screen and (max-width: 544px){
+  .portfolio__link {
+    font-size: 18px;
+    line-height: 28px;
+  }
+
+  .portfolio__logo {
+    font-size: 18px;
+    line-height: 28px;
+  }
 }
