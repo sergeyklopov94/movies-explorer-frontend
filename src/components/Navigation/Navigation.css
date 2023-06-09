@@ -1,9 +1,17 @@
 .navigation {
+  width: 100%;
+  display: flex;
+}
+
+.navigation-container {
+  width: 100%;
   flex-grow: 1;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   list-style-type: none;
+  padding: 0;
+  margin: 0;
 }
 
 .navigation_link {
@@ -36,10 +44,14 @@
 
 .navigation__button_theme_light {
   font-size: 13px;
-  font-weight: 500;
+  font-weight: 400;
   line-height: 18px;
   color: #000;
   margin: 0 16px 0 0;
+}
+
+.navigation__button_active {
+  font-weight: 500;
 }
 
 .navigation__button_type_login {
@@ -53,8 +65,7 @@
 
 .navigation__button_type_profile {
   color: #000;
-  /* временное св-во, удалить после отладки*/
-  background-color: #fff;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.5);
   width: 100px;
   height: 32px;
   border-radius: 20px;

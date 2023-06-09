@@ -11,7 +11,7 @@ import './Main.css';
 function Main() {
   return (
     <div className="main">
-        <Header/>
+        <Header color="dark"/>
         <Promo/>
         <NavTab/>
         <AboutProject/>
