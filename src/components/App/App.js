@@ -6,16 +6,6 @@ import moviesList from '../../constants/moviesList';
 import { Routes, Route, Navigate } from 'react-router-dom';
 
 function App() {
-
-  // временное решение для проверки активного состояния лайка
-  const [isLiked, setSelectedMovie] = React.useState(false);
-
-  function handleMovieClick() {
-    if (!isLiked)
-      setSelectedMovie(true);
-    else setSelectedMovie(false);
-  }
-
   return (
     <div className="App">
       <Routes>
@@ -26,8 +16,11 @@ function App() {
           <Route path="/movies" element={
             <Movies
               movies={moviesList}
-              isLiked={ isLiked }
-              onCardLike={ handleMovieClick }
+            />}
+          />
+          <Route path="/saved-movies" element={
+            <Movies
+              movies={moviesList}
             />}
           />
           <Route path="/" element={

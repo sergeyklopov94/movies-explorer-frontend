@@ -33,6 +33,10 @@
   opacity: .6;
 }
 
+.movies-card__like-button_disactive {
+  display: none;
+}
+
 @media screen and (max-width: 904px){
   .movies-card-list {
     padding: 70px 30px 80px;

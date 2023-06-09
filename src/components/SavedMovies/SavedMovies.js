@@ -2,11 +2,11 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
-import './Movies.css';
+import './SavedMovies.css';
 
-function Movies({ movies }) {
+function SavedMovies({ movies }) {
   return (
-    <div className="movies">
+    <div className="saved-movies">
       <Header color="light"/>
       <SearchForm/>
       <MoviesCardList movies={movies}/>
@@ -15,4 +15,4 @@ function Movies({ movies }) {
   );
 }
 
-export default Movies;
+export default SavedMovies;
