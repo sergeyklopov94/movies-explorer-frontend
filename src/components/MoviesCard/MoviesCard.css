@@ -3,6 +3,7 @@
   object-fit: cover;
   object-position: center 0;
   width: 100%;
+  transition: .5s ease;
 }
 
 .movies-card__info {
@@ -20,6 +21,7 @@
   line-height: 16px;
   margin: 0;
   padding: 0;
+  transition: .5s ease;
 }
 
 .movies-card__like-button {
@@ -51,6 +53,28 @@
   color: #a0a0a0;
   padding: 0;
   margin: 6px 0 0;
+  transition: .5s ease;
 }
 
+@media screen and (max-width: 904px){
+  .movies-card__image {
+    height: 190px;
+  }
+}
+
+@media screen and (max-width: 544px){
+  .movies-card__image {
+    height: 168px;
+  }
+
+  .movies-card__name {
+    font-size: 12px;
+    line-height: 15px;
+  }
+
+  .movies-card__time {
+    font-size: 10px;
+    line-height: 12px;
+  }
+}
 
