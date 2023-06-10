@@ -5,6 +5,7 @@ import Movies from '../Movies/Movies';
 import moviesList from '../../constants/moviesList';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 function App() {
   return (
@@ -13,8 +14,9 @@ function App() {
           <Route path="/signup" element={
             <Register/>}
           />
-          {/* <Route path="/sign-in" element={
-            <Login/>} /> */}
+          <Route path="/signin" element={
+            <Login/>}
+          />
           <Route path="/movies" element={
             <Movies
               movies={moviesList}

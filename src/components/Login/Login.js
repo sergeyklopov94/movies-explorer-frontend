@@ -1,24 +1,14 @@
 import Form from '../Form/Form';
 import FormSignature from '../FormSignature/FormSignature';
 import Greeting from '../Greeting/Greeting';
-import './Register.css';
+import './Login.css';
 
-function Register() {
+function Login() {
   return (
-    <div className="register">
-      <div className="register__container">
-        <Greeting text="Добро пожаловать!"/>
-        <Form buttonText="Зарегистрироваться">
-          <label for="name" className="form__input-label">
-            Имя
-          </label>
-          <input className="form__input"
-            type="text"
-            id="name-input"
-            name="name"
-            placeholder="Введите имя..."
-            required>
-          </input>
+    <div className="login">
+      <div className="login__container">
+        <Greeting text="Рады видеть!"/>
+        <Form buttonText="Войти">
           <label for="name" className="form__input-label">
             E-mail
           </label>
@@ -41,12 +31,12 @@ function Register() {
           </input>
         </Form>
         <FormSignature
-          text="Уже зарегистрированы?"
-          path="/signin"
-          buttonText="Войти"/>
+          text="Ещё не зарегистрированы?"
+          path="/signup"
+          buttonText="Регистрация"/>
       </div>
     </div>
   );
 }
 
-export default Register;
+export default Login;
