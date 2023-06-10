@@ -28,6 +28,7 @@
   border: 0;
   background-color: inherit;
   padding: 0;
+  cursor: pointer;
   transition: 0.5s ease;
 }
 

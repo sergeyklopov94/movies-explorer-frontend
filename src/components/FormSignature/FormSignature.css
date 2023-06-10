@@ -11,6 +11,7 @@
   color: #a0a0a0;
   margin: 0 6px 0 0;
   padding: 0;
+  transition: 0.5s ease;
 }
 
 .form-signature__button {
@@ -27,3 +28,17 @@
 .form-signature__button:hover {
   opacity: .6;
 }
+
+@media screen and (max-width: 544px){
+  .form-signature__text {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0 7px 0 0;
+  }
+
+  .form-signature__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
