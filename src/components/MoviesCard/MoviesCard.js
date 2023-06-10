@@ -11,10 +11,10 @@ function MoviesCard({ movie }) {
   const [isLiked, setSelectedMovie] = React.useState(false);
 
   const movieCardButtonClassName = (location.pathname === "/movies" && isLiked) ?
-  ( "movies-card__like-button movies-card__like-button_active" ) :
+  ( "movies-card__button_type_like movies-card__button_type_like_active" ) :
   (location.pathname === "/movies") ?
-  ( "movies-card__like-button") :
-  ( "movies-card__delete-button");
+  ( "movies-card__button_type_like") :
+  ( "movies-card__button_type_delete");
 
   function handleMovieClick() {
     if (!isLiked)
@@ -27,7 +27,7 @@ function MoviesCard({ movie }) {
       <img className="movies-card__image" src={ movie.image } alt={ movie.name }/>
       <div className="movies-card__info">
         <h2 className="movies-card__name">{ movie.name }</h2>
-        <button className={ movieCardButtonClassName } type="button" onClick={ handleMovieClick }></button>
+        <button className={`movies-card__button ${movieCardButtonClassName}`} type="button" onClick={ handleMovieClick }></button>
       </div>
       <DecorLine color="light"/>
       <p className="movies-card__time">{ movie.duration }</p>
