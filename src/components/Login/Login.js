@@ -5,11 +5,11 @@ import './Login.css';
 
 function Login() {
   return (
-    <div className="login">
+    <main className="login">
       <div className="login__container">
         <Greeting text="Рады видеть!"/>
         <Form buttonText="Войти">
-          <label for="name" className="form__input-label">
+          <label for="email" className="form__input-label">
             E-mail
           </label>
           <input className="form__input"
@@ -19,7 +19,7 @@ function Login() {
             placeholder="Введите e-mail..."
             required>
           </input>
-          <label for="name" className="form__input-label">
+          <label for="password" className="form__input-label">
             Пароль
           </label>
           <input className="form__input"
@@ -35,7 +35,7 @@ function Login() {
           path="/signup"
           buttonText="Регистрация"/>
       </div>
-    </div>
+    </main>
   );
 }
 
