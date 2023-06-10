@@ -1,0 +1,29 @@
+.form-signature {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.form-signature__text {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #a0a0a0;
+  margin: 0 6px 0 0;
+  padding: 0;
+}
+
+.form-signature__button {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #2be080;
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  transition: 0.5s ease;
+}
+
+.form-signature__button:hover {
+  opacity: .6;
+}

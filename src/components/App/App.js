@@ -4,14 +4,16 @@ import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import moviesList from '../../constants/moviesList';
 import { Routes, Route, Navigate } from 'react-router-dom';
+import Register from '../Register/Register';
 
 function App() {
   return (
     <div className="App">
       <Routes>
-          {/* <Route path="/sign-up" element={
-            <Register/>} />
-          <Route path="/sign-in" element={
+          <Route path="/signup" element={
+            <Register/>}
+          />
+          {/* <Route path="/sign-in" element={
             <Login/>} /> */}
           <Route path="/movies" element={
             <Movies

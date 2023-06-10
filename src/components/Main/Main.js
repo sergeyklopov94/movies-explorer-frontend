@@ -11,14 +11,14 @@ import './Main.css';
 function Main() {
   return (
     <div className="main">
-        <Header color="dark"/>
-        <Promo/>
-        <NavTab/>
-        <AboutProject/>
-        <Techs/>
-        <AboutMe/>
-        <Portfolio/>
-        <Footer/>
+      <Header color="dark"/>
+      <Promo/>
+      <NavTab/>
+      <AboutProject/>
+      <Techs/>
+      <AboutMe/>
+      <Portfolio/>
+      <Footer/>
     </div>
   );
 }
