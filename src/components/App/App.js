@@ -3,10 +3,11 @@ import './App.css';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import moviesList from '../../constants/moviesList';
-import { Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 function App() {
   return (
@@ -32,8 +33,11 @@ function App() {
             />}
           />
           <Route path="/" element={
-            <Main/> }/>
-          <Route path="/*" element={<Navigate to="/" replace/>} />
+            <Main/>}
+          />
+          <Route path="/*" element={
+            <PageNotFound/>}
+          />
         </Routes>
     </div>
   );

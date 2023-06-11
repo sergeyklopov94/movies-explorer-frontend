@@ -17,7 +17,7 @@ function Navigation() {
       </ul>
       )}
       {location.pathname === '/profile' && (
-        <ul className="navigation-container">
+        <ul className="navigation-container navigation-container_dynamic">
           <Link to="/movies" className="navigation_link">
             <button className="navigation__button navigation__button_theme_light">Фильмы</button>
           </Link>
@@ -34,7 +34,7 @@ function Navigation() {
         </ul>
       )}
       {location.pathname === '/movies' && (
-        <ul className="navigation-container">
+        <ul className="navigation-container navigation-container_dynamic">
           <Link to="/movies" className="navigation_link">
             <button className="navigation__button navigation__button_active navigation__button_theme_light">Фильмы</button>
           </Link>
@@ -50,7 +50,7 @@ function Navigation() {
           </Link>
         </ul>
       )}
-      {location.pathname === '/saved-movies' && (
+      {location.pathname === '/saved-movies navigation-container_dynamic' && (
         <ul className="navigation-container">
           <Link to="/movies" className="navigation_link">
             <button className="navigation__button navigation__button_theme_light">Фильмы</button>

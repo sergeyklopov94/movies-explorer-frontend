@@ -96,6 +96,12 @@
   height: 10.67px;
 }
 
+@media screen and (max-width: 770px) {
+  .navigation-container_dynamic {
+    display: none;
+  }
+}
+
 @media screen and (max-width: 544px){
   .navigation__button_type_login {
     margin-left: 14px;
