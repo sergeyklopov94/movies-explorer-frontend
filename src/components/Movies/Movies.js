@@ -3,6 +3,7 @@ import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
+import Preloader from '../Preloader/Preloader';
 import './Movies.css';
 
 function Movies({ movies, isBurgerMenuOpen, onBurgerButtonClick, onBurgerLinkClick }) {
