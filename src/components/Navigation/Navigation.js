@@ -8,53 +8,69 @@ function Navigation() {
 
   return (
     <nav className="navigation">
-      {location.pathname === '/' && (
+      {location.pathname === "/" && (
       <ul className="navigation-container">
-        <Link to="/signup" className="navigation_link">
-          <button className="navigation__button navigation__button_theme_dark">Регистрация</button>
-        </Link>
-        <Link to="/signin" className="navigation_link">
-          <button className="navigation__button navigation__button_theme_dark navigation__button_type_login">Войти</button>
-        </Link>
+        <li>
+          <Link to="/signup" className="navigation__button navigation__button_theme_dark">
+            Регистрация
+          </Link>
+        </li>
+        <li>
+          <Link to="/signin" className="navigation__button navigation__button_theme_dark navigation__button_type_login">
+            Войти
+          </Link>
+        </li>
       </ul>
       )}
-      {location.pathname === '/profile' && (
+      {location.pathname === "/profile" && (
         <ul className="navigation-container navigation-container_dynamic">
-          <Link to="/movies" className="navigation_link">
-            <button className="navigation__button navigation__button_theme_light">Фильмы</button>
-          </Link>
-          <Link to="/saved-movies" className="navigation_link navigation_link_type_saved">
-            <button className="navigation__button navigation__button_theme_light">Сохранённые фильмы</button>
-          </Link>
-          <Link to="/profile" className="navigation_link">
+          <li>
+            <Link to="/movies" className="navigation__button navigation__button_theme_light">
+              Фильмы
+            </Link>
+          </li>
+          <li className="navigation_link-container_type_saved">
+            <Link to="/saved-movies" className="navigation__button navigation__button_theme_light">
+              Сохранённые фильмы
+            </Link>
+          </li>
+          <li>
             <ProfileButton/>
-          </Link>
+          </li>
         </ul>
       )}
-      {location.pathname === '/movies' && (
+      {location.pathname === "/movies" && (
         <ul className="navigation-container navigation-container_dynamic">
-          <Link to="/movies" className="navigation_link">
-            <button className="navigation__button navigation__button_active navigation__button_theme_light">Фильмы</button>
-          </Link>
-          <Link to="/saved-movies" className="navigation_link navigation_link_type_saved">
-            <button className="navigation__button navigation__button_theme_light">Сохранённые фильмы</button>
-          </Link>
-          <Link to="/profile" className="navigation_link">
+          <li>
+            <Link to="/movies" className="navigation__button navigation__button_active navigation__button_theme_light">
+              Фильмы
+            </Link>
+          </li>
+          <li className="navigation_link-container_type_saved">
+            <Link to="/saved-movies" className="navigation__button navigation__button_theme_light">
+              Сохранённые фильмы
+            </Link>
+          </li>
+          <li>
             <ProfileButton/>
-          </Link>
+          </li>
         </ul>
       )}
-      {location.pathname === '/saved-movies' && (
+      {location.pathname === "/saved-movies" && (
         <ul className="navigation-container navigation-container_dynamic">
-          <Link to="/movies" className="navigation_link">
-            <button className="navigation__button navigation__button_theme_light">Фильмы</button>
-          </Link>
-          <Link to="/saved-movies" className="navigation_link navigation_link_type_saved">
-            <button className="navigation__button navigation__button_active navigation__button_theme_light">Сохранённые фильмы</button>
-          </Link>
-          <Link to="/profile" className="navigation_link">
+          <li>
+            <Link to="/movies" className="navigation__button navigation__button_theme_light">
+              Фильмы
+            </Link>
+          </li>
+          <li className="navigation_link-container_type_saved">
+            <Link to="/saved-movies" className="navigation__button navigation__button_active navigation__button_theme_light">
+              Сохранённые фильмы
+            </Link>
+          </li>
+          <li>
             <ProfileButton/>
-          </Link>
+          </li>
         </ul>
       )}
     </nav>

@@ -7,22 +7,26 @@ function BurgerMenu({ isBurgerMenuOpen, onBurgerLinkClick }) {
     <div className={`burger-menu ${isBurgerMenuOpen ? "burger-menu_opened" : ""}`}>
       <div className={`burger-menu__container ${isBurgerMenuOpen ? "burger-menu__container_opened" : ""}`}>
         <ul className="burger-menu__list">
-          <NavLink to="/" className={({ isActive }) => `burger-menu__link ${isActive && 'burger-menu__link_active'}`}
-            onClick={onBurgerLinkClick}>
-            Главная
-          </NavLink>
-          <NavLink to="/movies" className={({ isActive }) => `burger-menu__link ${isActive && 'burger-menu__link_active'}`}
-            onClick={onBurgerLinkClick}>
-            Фильмы
-          </NavLink>
-          <NavLink to="/saved-movies" className={({ isActive }) => `burger-menu__link ${isActive && 'burger-menu__link_active'}`}
-            onClick={onBurgerLinkClick}>
-            Сохранённые фильмы
-          </NavLink>
+          <li className="burger-menu__link-container">
+            <NavLink to="/" className={({ isActive }) => `burger-menu__link ${isActive && "burger-menu__link_active"}`}
+              onClick={onBurgerLinkClick}>
+              Главная
+            </NavLink>
+          </li>
+          <li className="burger-menu__link-container">
+            <NavLink to="/movies" className={({ isActive }) => `burger-menu__link ${isActive && "burger-menu__link_active"}`}
+              onClick={onBurgerLinkClick}>
+              Фильмы
+            </NavLink>
+          </li>
+          <li className="burger-menu__link-container">
+            <NavLink to="/saved-movies" className={({ isActive }) => `burger-menu__link ${isActive && "burger-menu__link_active"}`}
+              onClick={onBurgerLinkClick}>
+              Сохранённые фильмы
+            </NavLink>
+          </li>
         </ul>
-        <NavLink to="/profile" className="burger-menu__link" onClick={onBurgerLinkClick}>
-          <ProfileButton/>
-        </NavLink>
+        <ProfileButton onClick={onBurgerLinkClick}/>
       </div>
     </div>
   );

@@ -34,11 +34,11 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
           isEdit = {isEdit}
           buttonText="Сохранить">
           <div className="form__input-container">
-            <label for="name" className="form__input-label_type_profile">
+            <label className="form__input-label_type_profile">
               Имя
             </label>
             <input className="form__input_type_profile"
-              type="name"
+              type="text"
               id="name-input"
               name="name"
               placeholder="Введите имя..."
@@ -49,7 +49,7 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
           </div>
           <DecorLine color="light"/>
           <div className="form__input-container">
-            <label for="email" className="form__input-label_type_profile">
+            <label className="form__input-label_type_profile">
               E-mail
             </label>
             <input className="form__input_type_profile"

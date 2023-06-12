@@ -25,12 +25,12 @@ function AboutProject() {
           </p>
         </li>
       </ul>
-      <ul className="aboutProject__time">
+      <div className="aboutProject__time">
         <p className="aboutProject__time-text aboutProject__time-text_min">1 неделя</p>
         <p className="aboutProject__time-text aboutProject__time-text_max">4 недели</p>
         <p className="aboutProject__time-text aboutProject__time-text_bold aboutProject__time-text_light">Back-end</p>
         <p className="aboutProject__time-text aboutProject__time-text_bold aboutProject__time-text_light">Front-end</p>
-      </ul>
+      </div>
     </section>
   );
 }

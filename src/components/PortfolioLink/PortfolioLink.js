@@ -1,3 +1,4 @@
+import DecorLine from '../DecorLine/DecorLine';
 import './PortfolioLink.css';
 
 function PortfolioLink({ text, link }) {
@@ -11,6 +12,7 @@ function PortfolioLink({ text, link }) {
       >{ text }
         <span className="portfolio__logo">&#8599;</span>
       </a>
+      <DecorLine color="light"/>
     </li>
   );
 }

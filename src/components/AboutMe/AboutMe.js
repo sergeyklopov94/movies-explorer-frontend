@@ -1,7 +1,7 @@
 import './AboutMe.css';
 import DecorLine from '../DecorLine/DecorLine';
 import SectionTitle from '../SectionTitle/SectionTitle';
-import myPhoto from '../../images/me.jpg';
+import myPhoto from '../../images/student.jpg';
 
 function AboutMe() {
   return (
@@ -20,7 +20,7 @@ function AboutMe() {
           Люблю путешествовать. Помимо этого, неравнодушен к футболу и кинематографу.
         </p>
         <a className="about-me__link" href="https://github.com/sergeyklopov94" target="_blank" rel="noreferrer">Github</a>
-        <img className="about-me__photo" src={ myPhoto } alt="Фотография Сергея"/>
+        <img className="about-me__photo" src={ myPhoto } alt="Фотография студента"/>
       </article>
     </section>
   );

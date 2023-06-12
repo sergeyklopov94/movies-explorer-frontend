@@ -21,8 +21,7 @@
 .promo__image {
   width: 320px;
   height: 320px;
-  background-image: url('../../images/landing-logo.svg');
-  background-size: contain;
+  object-fit: contain;
   position: absolute;
   top: 82px;
   left: calc(100% / 2 - 160px);
