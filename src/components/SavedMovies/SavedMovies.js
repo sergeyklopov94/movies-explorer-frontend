@@ -1,13 +1,22 @@
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './SavedMovies.css';
 
-function SavedMovies({ movies }) {
+function SavedMovies({ movies, isBurgerMenuOpen, onBurgerButtonClick, onBurgerLinkClick }) {
   return (
     <div className="saved-movies">
-      <Header color="light"/>
+      <BurgerMenu
+        isBurgerMenuOpen={isBurgerMenuOpen}
+        onBurgerLinkClick={onBurgerLinkClick}
+      />
+      <Header
+        color="light"
+        onBurgerButtonClick={onBurgerButtonClick}
+        isBurgerMenuOpen={isBurgerMenuOpen}
+      />
       <SearchForm/>
       <MoviesCardList movies={movies}/>
       <Footer/>

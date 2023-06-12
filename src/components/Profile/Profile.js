@@ -3,8 +3,9 @@ import DecorLine from '../DecorLine/DecorLine';
 import Form from '../Form/Form';
 import Header from '../Header/Header';
 import './Profile.css';
+import BurgerMenu from '../BurgerMenu/BurgerMenu';
 
-function Profile() {
+function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
 
   // временное решение для проверки редактирования состояния профиля
   const [isEdit, setEditState] = React.useState(false);
@@ -19,7 +20,14 @@ function Profile() {
 
   return (
     <main className="profile">
-      <Header color="light"/>
+      <BurgerMenu
+        isBurgerMenuOpen={isBurgerMenuOpen}
+      />
+      <Header
+        color="light"
+        onBurgerButtonClick={onBurgerButtonClick}
+        isBurgerMenuOpen={isBurgerMenuOpen}
+      />
       <div className="profile__container">
         <h2 className="profile__title">Привет, Сергей!</h2>
         <Form

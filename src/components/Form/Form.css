@@ -13,6 +13,10 @@
   flex-grow: 1;
 }
 
+.form__inputs-list {
+  margin-bottom: 204px;
+}
+
 .form__input-container {
   display: flex;
   justify-content: space-between;
@@ -83,6 +87,10 @@
   .form_type_profile {
     padding-top: 79px;
   }
+
+  .form__inputs-list {
+    margin-bottom: 194px;
+  }
 }
 
 @media screen and (max-width: 544px){
@@ -92,6 +100,10 @@
 
   .form_type_profile {
     padding-top: 63px;
+  }
+
+  .form__inputs-list {
+    margin-bottom: 363px;
   }
 
   .form__button {

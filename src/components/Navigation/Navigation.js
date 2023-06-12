@@ -1,9 +1,11 @@
 import './Navigation.css';
-import profileIcon from '../../images/icon-profile-button.svg';
 import { Link, useLocation } from 'react-router-dom';
+import ProfileButton from '../ProfileButton/ProfileButton';
 
 function Navigation() {
+
   const location = useLocation();
+
   return (
     <nav className="navigation">
       {location.pathname === '/' && (
@@ -25,11 +27,7 @@ function Navigation() {
             <button className="navigation__button navigation__button_theme_light">Сохранённые фильмы</button>
           </Link>
           <Link to="/profile" className="navigation_link">
-            <button className="navigation__button navigation__button_type_profile">Аккаунт
-              <div className="navigation__button-icon-container">
-                <img className="navigation__button-icon" src={profileIcon} alt="Иконка профиля"/>
-              </div>
-            </button>
+            <ProfileButton/>
           </Link>
         </ul>
       )}
@@ -42,16 +40,12 @@ function Navigation() {
             <button className="navigation__button navigation__button_theme_light">Сохранённые фильмы</button>
           </Link>
           <Link to="/profile" className="navigation_link">
-            <button className="navigation__button navigation__button_type_profile">Аккаунт
-              <div className="navigation__button-icon-container">
-                <img className="navigation__button-icon" src={profileIcon} alt="Иконка профиля"/>
-              </div>
-            </button>
+            <ProfileButton/>
           </Link>
         </ul>
       )}
       {location.pathname === '/saved-movies navigation-container_dynamic' && (
-        <ul className="navigation-container">
+        <ul className="navigation-container navigation-container_dynamic">
           <Link to="/movies" className="navigation_link">
             <button className="navigation__button navigation__button_theme_light">Фильмы</button>
           </Link>
@@ -59,11 +53,7 @@ function Navigation() {
             <button className="navigation__button navigation__button_active navigation__button_theme_light">Сохранённые фильмы</button>
           </Link>
           <Link to="/profile" className="navigation_link">
-            <button className="navigation__button navigation__button_type_profile">Аккаунт
-              <div className="navigation__button-icon-container">
-                <img className="navigation__button-icon" src={profileIcon} alt="Иконка профиля"/>
-              </div>
-            </button>
+            <ProfileButton/>
           </Link>
         </ul>
       )}
