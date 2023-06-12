@@ -1,7 +1,7 @@
 .portfolio__link-container {
   display: flex;
   justify-content: stretch;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .portfolio__link-container:hover {
@@ -20,7 +20,7 @@
   display: flex;
   justify-content: space-between;
   flex-grow: 1;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .portfolio__logo {
@@ -28,7 +28,7 @@
   font-size: 30px;
   line-height: 60px;
   letter-spacing: -0.04em;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 @media screen and (max-width: 904px){

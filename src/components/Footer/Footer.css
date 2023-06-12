@@ -1,14 +1,14 @@
 .footer {
   padding: 79px 70px 20px;
   background-color: #fafafa;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .footer__text {
   font-weight: 400;
   font-size: 13px;
   line-height: 15.73px;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .footer__title {
@@ -22,7 +22,7 @@
   display: flex;
   align-items: flex-end;
   margin: 20px 0 0;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .footer__year {
@@ -35,7 +35,7 @@
   color: #000;
   text-decoration: none;
   margin: 0 20px 0 0;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .footer__link:hover {

@@ -1,7 +1,7 @@
 .aboutProject {
   padding: 110px 70px;
   background-color: inherit;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .about-project__table {
@@ -9,12 +9,12 @@
   padding: 0;
   margin: 70px 0 110px;
   display: flex;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .about-project__column {
   margin: 0 40px 0 0;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .about-project__column:last-of-type {
@@ -28,7 +28,7 @@
   letter-spacing: -0.04em;
   padding: 0;
   margin: 0 0 26px;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .about-project__column-text {
@@ -36,7 +36,7 @@
   line-height: 20px;
   padding: 0;
   margin: 0;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .aboutProject__time {
@@ -46,7 +46,7 @@
   row-gap: 14px;
   grid-template-columns: 20% 80%;
   grid-template-rows: 36px 17px;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .aboutProject__time-text {
@@ -57,7 +57,7 @@
   align-items: center;
   padding: 0;
   margin: 0;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .aboutProject__time-text_bold {

@@ -1,7 +1,7 @@
 .portfolio {
   background-color: inherit;
   padding: 0 70px 125px;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .portfolio__title {
@@ -11,7 +11,7 @@
   line-height: 20px;
   padding: 0;
   margin: 0 0 30px;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .portfolio__link-list {

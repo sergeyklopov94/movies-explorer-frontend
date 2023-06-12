@@ -34,21 +34,6 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
           isEdit = {isEdit}
           buttonText="Сохранить">
           <div className="form__input-container">
-            <label for="email" className="form__input-label_type_profile">
-              E-mail
-            </label>
-            <input className="form__input_type_profile"
-              type="email"
-              id="email-input"
-              name="email"
-              placeholder="Введите e-mail..."
-              defaultValue="sklo@yandex.ru"
-              readOnly={isEdit ? false : true}
-              required>
-            </input>
-          </div>
-          <DecorLine color="light"/>
-          <div className="form__input-container">
             <label for="name" className="form__input-label_type_profile">
               Имя
             </label>
@@ -58,6 +43,21 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
               name="name"
               placeholder="Введите имя..."
               defaultValue="Сергей"
+              readOnly={isEdit ? false : true}
+              required>
+            </input>
+          </div>
+          <DecorLine color="light"/>
+          <div className="form__input-container">
+            <label for="email" className="form__input-label_type_profile">
+              E-mail
+            </label>
+            <input className="form__input_type_profile"
+              type="email"
+              id="email-input"
+              name="email"
+              placeholder="Введите e-mail..."
+              defaultValue="sklo@yandex.ru"
               readOnly={isEdit ? false : true}
               required>
             </input>

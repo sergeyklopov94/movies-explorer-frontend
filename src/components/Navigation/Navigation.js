@@ -44,7 +44,7 @@ function Navigation() {
           </Link>
         </ul>
       )}
-      {location.pathname === '/saved-movies navigation-container_dynamic' && (
+      {location.pathname === '/saved-movies' && (
         <ul className="navigation-container navigation-container_dynamic">
           <Link to="/movies" className="navigation_link">
             <button className="navigation__button navigation__button_theme_light">Фильмы</button>

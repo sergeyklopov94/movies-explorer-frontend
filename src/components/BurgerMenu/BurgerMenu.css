@@ -54,7 +54,7 @@
   color: #000;
   margin-bottom: 22px;
   padding-bottom: 4px;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .burger-menu__link:hover {

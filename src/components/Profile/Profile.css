@@ -1,7 +1,8 @@
 .profile {
   display: flex;
   flex-direction: column;
-
+  width: 100%;
+  height: 100%;
 }
 
 .profile__container {
@@ -16,7 +17,7 @@
   box-sizing: border-box;
   max-width: 410px;
   min-width: 260px;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .profile__title {
@@ -27,7 +28,7 @@
   line-height: 29px;
   margin: 0;
   padding: 0;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .profile__buttons-list {
@@ -50,7 +51,7 @@
   cursor: pointer;
   margin-bottom: 16px;
   padding: 0;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 .profile__button:hover {

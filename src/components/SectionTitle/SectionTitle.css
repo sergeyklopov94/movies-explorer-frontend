@@ -4,7 +4,7 @@
   line-height: 26.63px;
   letter-spacing: -0.04em;
   margin: 0 0 23px 0;
-  transition: 0.5s ease;
+  transition: .5s ease;
 }
 
 @media screen and (max-width: 544px){
