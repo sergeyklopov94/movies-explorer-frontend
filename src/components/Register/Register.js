@@ -9,7 +9,7 @@ function Register() {
       <div className="register__container">
         <Greeting text="Добро пожаловать!"/>
         <Form buttonText="Зарегистрироваться">
-          <label className="form__input-label">
+          <label className="form__input-label form__input-label_type_auth">
             Имя
           </label>
           <input className="form__input"
@@ -19,7 +19,7 @@ function Register() {
             placeholder="Введите имя..."
             required>
           </input>
-          <label className="form__input-label">
+          <label className="form__input-label form__input-label_type_auth">
             E-mail
           </label>
           <input className="form__input"
@@ -29,7 +29,7 @@ function Register() {
             placeholder="Введите e-mail..."
             required>
           </input>
-          <label className="form__input-label">
+          <label className="form__input-label form__input-label_type_auth">
             Пароль
           </label>
           <input className="form__input"

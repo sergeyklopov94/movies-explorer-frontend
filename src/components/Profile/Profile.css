@@ -5,7 +5,7 @@
   height: 100%;
 }
 
-.profile__container {
+.profile-container {
   padding: 74px 0 70px;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@
   transition: .5s ease;
 }
 
-.profile__title {
+.profile-container__title {
   width: 100%;
   text-align: center;
   font-weight: 500;
@@ -31,18 +31,18 @@
   transition: .5s ease;
 }
 
-.profile__buttons-list {
+.profile-container__buttons-list {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.profile__buttons-list_invisible {
+.profile-container__buttons-list_invisible {
   display: none;
 }
 
-.profile__button {
+.profile-container__button {
   background: inherit;
   border: none;
   font-size: 13px;
@@ -54,38 +54,38 @@
   transition: .5s ease;
 }
 
-.profile__button:hover {
+.profile-container__button:hover {
   opacity: .6;
 }
 
-.profile__button:last-of-type {
+.profile-container__button:last-of-type {
   margin: 0;
 }
 
-.profile__button_type_edit {
+.profile-container__button_type_edit {
   color: #000;
 }
 
-.profile__button_type_signout {
+.profile-container__button_type_signout {
   color:  #ee3465;
 }
 
 @media screen and (max-width: 904px){
-  .profile__container {
+  .profile-container {
     padding: 236px 30px;
   }
 }
 
 @media screen and (max-width: 544px){
-  .profile__container {
+  .profile-container {
     padding: 70px 30px 30px;
   }
 
-  .profile__buttons-list {
+  .profile-container__buttons-list {
     margin-bottom: 10px;
   }
 
-  .profile__button {
+  .profile-container__button {
     font-size: 12px;
     line-height: 15px;
   }

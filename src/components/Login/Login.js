@@ -9,7 +9,7 @@ function Login() {
       <div className="login__container">
         <Greeting text="Рады видеть!"/>
         <Form buttonText="Войти">
-          <label className="form__input-label">
+          <label className="form__input-label form__input-label_type_auth">
             E-mail
           </label>
           <input className="form__input"
@@ -19,7 +19,7 @@ function Login() {
             placeholder="Введите e-mail..."
             required>
           </input>
-          <label className="form__input-label">
+          <label className="form__input-label form__input-label_type_auth">
             Пароль
           </label>
           <input className="form__input"

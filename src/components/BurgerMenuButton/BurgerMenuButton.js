@@ -6,7 +6,7 @@ function BurgerMenuButton({onBurgerButtonClick, isBurgerMenuOpen}) {
   const location = useLocation();
 
   const burgerMenuButtonClassName = (location.pathname === "/") ?
-  ("burger-menu-button_invisible"):
+  ("burger-menu-button burger-menu-button_invisible"):
   (isBurgerMenuOpen)?
   ( "burger-menu-button burger-menu-button_type_x" ) :
   ( "burger-menu-button burger-menu-button_type_lines");

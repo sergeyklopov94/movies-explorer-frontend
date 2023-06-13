@@ -1,5 +1,6 @@
 .form {
   padding: 40px 0 0;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -12,10 +13,6 @@
   padding-top: 106px;
   flex-grow: 1;
 }
-
-/* .form__inputs-list {
-  margin-bottom: 204px;
-} */
 
 .form__input-container {
   display: flex;
@@ -30,9 +27,12 @@
 }
 
 .form__input-label {
+  color: #a0a0a0;
+}
+
+.form__input-label_type_auth {
   font-size: 10px;
   line-height: 12px;
-  color: #a0a0a0;
 }
 
 .form__input-label_type_profile {

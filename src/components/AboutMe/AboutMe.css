@@ -1,6 +1,7 @@
 .about-me {
   background-color: inherit;
   padding: 110px 70px 125px;
+  box-sizing: border-box;
   transition: .5s ease;
 }
 

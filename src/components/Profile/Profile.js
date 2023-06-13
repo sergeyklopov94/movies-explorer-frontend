@@ -15,8 +15,8 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
   }
 
   const buttonsListClassName = (isEdit) ?
-  ( "profile__buttons-list profile__buttons-list_invisible" ) :
-  ( "profile__buttons-list");
+  ( "profile-container__buttons-list profile-container__buttons-list_invisible" ) :
+  ( "profile-container__buttons-list");
 
   return (
     <main className="profile">
@@ -28,16 +28,16 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
         onBurgerButtonClick={onBurgerButtonClick}
         isBurgerMenuOpen={isBurgerMenuOpen}
       />
-      <div className="profile__container">
-        <h2 className="profile__title">Привет, Сергей!</h2>
+      <div className="profile-container">
+        <h2 className="profile-container__title">Привет, Сергей!</h2>
         <Form
           isEdit = {isEdit}
           buttonText="Сохранить">
           <div className="form__input-container">
-            <label className="form__input-label_type_profile">
+            <label className="form__input-label form__input-label_type_profile">
               Имя
             </label>
-            <input className="form__input_type_profile"
+            <input className="form__input form__input_type_profile"
               type="text"
               id="name-input"
               name="name"
@@ -49,10 +49,10 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
           </div>
           <DecorLine color="light"/>
           <div className="form__input-container">
-            <label className="form__input-label_type_profile">
+            <label className="form__input-label form__input-label_type_profile">
               E-mail
             </label>
-            <input className="form__input_type_profile"
+            <input className="form__input form__input_type_profile"
               type="email"
               id="email-input"
               name="email"
@@ -65,13 +65,13 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
         </Form>
         <div className={buttonsListClassName}>
           <button
-            className="profile__button profile__button_type_edit"
+            className="profile-container__button profile-container__button_type_edit"
             type="button"
             onClick={handleEditClick}>
             Редактировать
           </button>
           <button
-            className="profile__button profile__button_type_signout"
+            className="profile-container__button profile-container__button_type_signout"
             type="button">
             Выйти из аккаунта
           </button>

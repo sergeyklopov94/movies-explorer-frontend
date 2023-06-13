@@ -1,6 +1,7 @@
 .portfolio {
   background-color: inherit;
   padding: 0 70px 125px;
+  box-sizing: border-box;
   transition: .5s ease;
 }
 
