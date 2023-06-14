@@ -10,16 +10,18 @@ import './Main.css';
 
 function Main() {
   return (
-    <div className="main">
+    <>
       <Header color="dark"/>
-      <Promo/>
-      <NavTab/>
-      <AboutProject/>
-      <Techs/>
-      <AboutMe/>
-      <Portfolio/>
+      <main className="main">
+        <Promo/>
+        <NavTab/>
+        <AboutProject/>
+        <Techs/>
+        <AboutMe/>
+        <Portfolio/>
+      </main>
       <Footer/>
-    </div>
+    </>
   );
 }
 

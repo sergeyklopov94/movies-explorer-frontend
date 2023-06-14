@@ -33,6 +33,11 @@
   margin-bottom: 15px;
 }
 
+/* в макете нет фокуса для данного инпута, выделил его на свое усмотрение */
+.search-form__input:focus {
+  color: #000;
+}
+
 .search-form__input::placeholder {
   color: #a0a0a0;
 }

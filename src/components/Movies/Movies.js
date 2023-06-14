@@ -7,7 +7,7 @@ import './Movies.css';
 
 function Movies({ movies, isBurgerMenuOpen, onBurgerButtonClick, onBurgerLinkClick }) {
   return (
-    <div className="movies">
+    <>
       <BurgerMenu
         isBurgerMenuOpen={isBurgerMenuOpen}
         onBurgerLinkClick={onBurgerLinkClick}
@@ -17,10 +17,12 @@ function Movies({ movies, isBurgerMenuOpen, onBurgerButtonClick, onBurgerLinkCli
         onBurgerButtonClick={onBurgerButtonClick}
         isBurgerMenuOpen={isBurgerMenuOpen}
       />
-      <SearchForm/>
-      <MoviesCardList movies={movies}/>
+      <main className="movies">
+        <SearchForm/>
+        <MoviesCardList movies={movies}/>
+      </main>
       <Footer/>
-    </div>
+    </>
   );
 }
 

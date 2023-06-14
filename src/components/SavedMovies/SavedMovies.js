@@ -7,7 +7,7 @@ import './SavedMovies.css';
 
 function SavedMovies({ movies, isBurgerMenuOpen, onBurgerButtonClick, onBurgerLinkClick }) {
   return (
-    <div className="saved-movies">
+    <>
       <BurgerMenu
         isBurgerMenuOpen={isBurgerMenuOpen}
         onBurgerLinkClick={onBurgerLinkClick}
@@ -17,10 +17,12 @@ function SavedMovies({ movies, isBurgerMenuOpen, onBurgerButtonClick, onBurgerLi
         onBurgerButtonClick={onBurgerButtonClick}
         isBurgerMenuOpen={isBurgerMenuOpen}
       />
-      <SearchForm/>
-      <MoviesCardList movies={movies}/>
+      <main className="saved-movies">
+        <SearchForm/>
+        <MoviesCardList movies={movies}/>
+      </main>
       <Footer/>
-    </div>
+    </>
   );
 }
 

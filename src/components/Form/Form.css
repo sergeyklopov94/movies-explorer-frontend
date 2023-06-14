@@ -53,6 +53,10 @@
   outline: none;
 }
 
+.form__input:focus {
+  font-weight: 500;
+}
+
 .form__input_type_profile {
   width: 100%;
   flex-grow: 1;
