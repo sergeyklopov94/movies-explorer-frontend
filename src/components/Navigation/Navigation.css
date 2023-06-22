@@ -1,0 +1,90 @@
+.navigation {
+  width: 100%;
+  display: flex;
+}
+
+.navigation-container {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  list-style-type: none;
+  padding: 0;
+  margin: 0 0 0 44px;
+}
+
+.navigation-container_vertical {
+  display: block;
+}
+
+.navigation__link-container_type_saved {
+  flex-grow: 1;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.navigation__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-decoration: none;
+  border: 0;
+  background-color: inherit;
+  padding: 0;
+  cursor: pointer;
+  transition: .5s ease;
+}
+
+.navigation__button:hover {
+  opacity: .6;
+}
+
+.navigation__button_theme_dark {
+  font-size: 12px;
+  font-weight: 500;
+  line-height: 16px;
+  color: #fff;
+}
+
+.navigation__button_theme_light {
+  font-size: 13px;
+  font-weight: 400;
+  line-height: 18px;
+  color: #000;
+  margin: 0 16px 0 0;
+}
+
+.navigation__button_active {
+  font-weight: 500;
+}
+
+.navigation__button_type_login {
+  color: #000;
+  background-color: #2be080;
+  width: 76px;
+  height: 32px;
+  border-radius: 3px;
+  margin: 0 0 0 30px;
+}
+
+@media screen and (max-width: 770px) {
+  .navigation-container_dynamic {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 544px){
+  .navigation__button_type_login {
+    margin-left: 14px;
+  }
+
+  .navigation__button_theme_dark {
+    font-size: 10px;
+  }
+
+  .navigation__button_type_login {
+    width: 54px;
+    height: 26px;
+  }
+}

@@ -1,0 +1,12 @@
+.decor-line {
+  width: 100%;
+  border-bottom: 1px solid;
+}
+
+.decor-line_dark {
+  border-color: #000;
+}
+
+.decor-line_light {
+  border-color: #e8e8e8;
+}

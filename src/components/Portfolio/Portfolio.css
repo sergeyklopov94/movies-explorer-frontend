@@ -1,0 +1,40 @@
+.portfolio {
+  background-color: inherit;
+  padding: 0 70px 125px;
+  box-sizing: border-box;
+  transition: .5s ease;
+}
+
+.portfolio__title {
+  color: #a0a0a0;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  padding: 0;
+  margin: 0 0 30px;
+  transition: .5s ease;
+}
+
+.portfolio__link-list {
+  list-style: none;
+  margin: 0 ;
+  padding: 0;
+}
+
+@media screen and (max-width: 904px){
+  .portfolio {
+    padding: 0 50px 90px;
+  }
+}
+
+@media screen and (max-width: 544px){
+  .portfolio {
+    padding: 0 14px 70px;
+  }
+
+  .portfolio__title {
+    font-size: 14px;
+    line-height: 20px;
+    margin: 0 0 20px;
+  }
+}

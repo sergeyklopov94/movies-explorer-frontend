@@ -1,0 +1,49 @@
+.form-signature {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top: 16px;
+}
+
+.form-signature__text {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #a0a0a0;
+  margin: 0;
+  padding: 0;
+  transition: .5s ease;
+}
+
+.form-signature__button {
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #2be080;
+  margin: 0 0 0 6px;
+  padding: 0;
+  text-decoration: none;
+  transition: .5s ease;
+}
+
+.form-signature__button:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 544px){
+  .form-signature {
+    margin-top: 14px;
+  }
+
+  .form-signature__text {
+    font-size: 12px;
+    line-height: 15px;
+    margin: 0 7px 0 0;
+  }
+
+  .form-signature__button {
+    font-size: 12px;
+    line-height: 15px;
+  }
+}
+
