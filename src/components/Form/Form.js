@@ -1,7 +1,7 @@
 import { useLocation } from 'react-router-dom';
 import './Form.css';
 
-function Form({ children, isEdit, buttonText }) {
+function Form({ children, isEdit, buttonText, handleSubmit, errorMessage, handleClick }) {
 
   const location = useLocation();
 
@@ -14,11 +14,19 @@ function Form({ children, isEdit, buttonText }) {
   ( "form__button");
 
   return (
-    <form className={ formClassName }>
+    <form
+    className={ formClassName }
+    onSubmit={ handleSubmit }>
       <div className="form__inputs-list">
         {children}
       </div>
-      <button className={buttonClassName} type="submit">{buttonText}</button>
+      <span className="form__error-message">{ errorMessage }</span>
+      <button
+        className={buttonClassName}
+        type="submit"
+        onClick={handleClick}>
+          {buttonText}
+      </button>
     </form>
   );
 }

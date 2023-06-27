@@ -45,6 +45,7 @@
   font-weight: 500;
   line-height: 16px;
   color: #fff;
+  margin: 0 16px 0 0;
 }
 
 .navigation__button_theme_light {
@@ -65,7 +66,7 @@
   width: 76px;
   height: 32px;
   border-radius: 3px;
-  margin: 0 0 0 30px;
+  margin: 0 0 0 14px;
 }
 
 @media screen and (max-width: 770px) {

@@ -4,14 +4,39 @@ import Form from '../Form/Form';
 import Header from '../Header/Header';
 import './Profile.css';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
+import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 
-function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
+function Profile({ onBurgerButtonClick, isBurgerMenuOpen, handleLogout, handleUpdateUser, errorMessage }) {
 
-  // временное решение для проверки редактирования состояния профиля
   const [isEdit, setEditState] = React.useState(false);
+  const [name, setName] = React.useState('');
+  const [email, setEmail] = React.useState('');
+
+  const currentUser = React.useContext(CurrentUserContext);
 
   function handleEditClick() {
-    setEditState(true);
+    setEditState(!isEdit);
+  }
+
+  function handleNameChange(evt) {
+    setName(evt.target.value);
+  }
+
+  function handleEmailChange(evt) {
+    setEmail(evt.target.value);
+  }
+
+  React.useEffect(() => {
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+  }, [currentUser]);
+
+  function handleEditProfileSubmit(evt) {
+    evt.preventDefault();
+    handleUpdateUser({
+      name,
+      email,
+    })
   }
 
   const buttonsListClassName = (isEdit) ?
@@ -33,7 +58,10 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
           <h2 className="profile-container__title">Привет, Сергей!</h2>
           <Form
             isEdit = {isEdit}
-            buttonText="Сохранить">
+            buttonText="Сохранить"
+            handleSubmit={handleEditProfileSubmit}
+            errorMessage={errorMessage}
+            handleClick={handleEditClick}>
             <div className="form__input-container">
               <label className="form__input-label form__input-label_type_profile">
                 Имя
@@ -42,9 +70,10 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
                 type="text"
                 id="name-input"
                 name="name"
+                value={name || ''}
                 placeholder="Введите имя..."
-                defaultValue="Сергей"
                 readOnly={isEdit ? false : true}
+                onChange={handleNameChange}
                 required>
               </input>
             </div>
@@ -57,9 +86,10 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
                 type="email"
                 id="email-input"
                 name="email"
+                value={email || ''}
                 placeholder="Введите e-mail..."
-                defaultValue="sklo@yandex.ru"
                 readOnly={isEdit ? false : true}
+                onChange={handleEmailChange}
                 required>
               </input>
             </div>
@@ -73,7 +103,8 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen }) {
             </button>
             <button
               className="profile-container__button profile-container__button_type_signout"
-              type="button">
+              type="button"
+              onClick={handleLogout}>
               Выйти из аккаунта
             </button>
           </div>

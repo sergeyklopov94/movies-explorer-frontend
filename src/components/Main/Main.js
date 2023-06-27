@@ -8,10 +8,10 @@ import Promo from '../Promo/Promo';
 import Techs from '../Techs/Techs';
 import './Main.css';
 
-function Main() {
+function Main({loggedIn}) {
   return (
     <>
-      <Header color="dark"/>
+      <Header color="dark" loggedIn={loggedIn}/>
       <main className="main">
         <Promo/>
         <NavTab/>

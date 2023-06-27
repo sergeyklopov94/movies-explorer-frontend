@@ -2,13 +2,30 @@ import './Navigation.css';
 import { Link, useLocation } from 'react-router-dom';
 import ProfileButton from '../ProfileButton/ProfileButton';
 
-function Navigation() {
+function Navigation({loggedIn}) {
 
   const location = useLocation();
 
   return (
     <nav className="navigation">
-      {location.pathname === "/" && (
+      {location.pathname === "/" && loggedIn &&(
+        <ul className="navigation-container navigation-container_dynamic">
+          <li className="navigation__link-container">
+            <Link to="/movies" className="navigation__button navigation__button_theme_dark">
+              Фильмы
+            </Link>
+          </li>
+          <li className="navigation__link-container navigation__link-container_type_saved">
+            <Link to="/saved-movies" className="navigation__button navigation__button_theme_dark">
+              Сохранённые фильмы
+            </Link>
+          </li>
+          <li className="navigation__link-container">
+            <ProfileButton/>
+          </li>
+        </ul>
+      )}
+      {location.pathname === "/" && !loggedIn &&(
       <ul className="navigation-container">
         <li>
           <Link to="/signup" className="navigation__button navigation__button_theme_dark">
