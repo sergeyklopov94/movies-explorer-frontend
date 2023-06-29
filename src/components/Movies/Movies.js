@@ -5,7 +5,17 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 
-function Movies({ movies, isBurgerMenuOpen, onBurgerButtonClick, onBurgerLinkClick }) {
+function Movies({
+  movies,
+  isBurgerMenuOpen,
+  onBurgerButtonClick,
+  onBurgerLinkClick,
+  onSearchButtonSubmit,
+  searchString,
+  setSearchString,
+  errorMessage,
+  isLoading
+ }) {
   return (
     <>
       <BurgerMenu
@@ -18,8 +28,16 @@ function Movies({ movies, isBurgerMenuOpen, onBurgerButtonClick, onBurgerLinkCli
         isBurgerMenuOpen={isBurgerMenuOpen}
       />
       <main className="movies">
-        <SearchForm/>
-        <MoviesCardList movies={movies}/>
+        <SearchForm
+          handleSearchButtonSubmit={onSearchButtonSubmit}
+          searchString={searchString}
+          setSearchString={setSearchString}
+          errorMessage={errorMessage}
+        />
+        <MoviesCardList
+          movies={movies}
+          isLoading={isLoading}
+        />
       </main>
       <Footer/>
     </>

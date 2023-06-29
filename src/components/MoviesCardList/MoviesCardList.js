@@ -1,7 +1,8 @@
 import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
+import Preloader from '../Preloader/Preloader';
 
-function MoviesCardList({ movies }) {
+function MoviesCardList({ movies, isLoading }) {
 
   const movieMoreButtonClassName = (movies.length > 9) ?
   ( "movies-card-list__more-button") :
@@ -9,11 +10,21 @@ function MoviesCardList({ movies }) {
 
   return (
     <section className="movies-card-list">
-      <ul className="movies-card-list__container">
-        {movies.map((movie) => (
-          <MoviesCard movie={movie} key={movie.name}/>
-        ))}
-      </ul>
+      {
+        (localStorage.getItem("movies") !== null) && (localStorage.getItem("searchString") !== "") && (movies.length === 0) &&
+        (isLoading === false) && (<span className="moviies-card-list__search-result">Ничего не найдено</span>)
+      }
+      {
+        (isLoading === true) && (<Preloader />)
+      }
+      {
+        (isLoading === false) && (
+        <ul className="movies-card-list__container">
+          {movies.map((movie) => (
+            <MoviesCard movie={movie} key={movie.id}/>
+          ))}
+        </ul>)
+      }
       <button className={movieMoreButtonClassName}>Ещё</button>
     </section>
   );

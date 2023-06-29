@@ -22,15 +22,31 @@ function MoviesCard({ movie }) {
     else setSelectedMovie(false);
   }
 
+  function calculateDuration(duration) {
+    const hours = Math.trunc(duration/60);
+    const minutes = duration - hours * 60;
+    if(hours === 0) {
+      return `${minutes}м`;
+    } else
+      return `${hours}ч ${minutes}м`;
+  }
+
   return (
     <li className="movies-card">
-      <img className="movies-card__image" src={ movie.image } alt={ movie.name }/>
+      <a
+        href={ movie.trailerLink }
+        className="movies-card__link"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img className="movies-card__image" src={`https://api.nomoreparties.co${movie.image.url}`} alt={ movie.nameRU }/>
+      </a>
       <div className="movies-card__info">
-        <h2 className="movies-card__name">{ movie.name }</h2>
+        <h2 className="movies-card__name">{ movie.nameRU }</h2>
         <button className={`movies-card__button ${movieCardButtonClassName}`} type="button" onClick={ handleMovieClick }></button>
       </div>
       <DecorLine color="light"/>
-      <p className="movies-card__time">{ movie.duration }</p>
+      <p className="movies-card__time">{ calculateDuration(movie.duration) }</p>
     </li>
   );
 }

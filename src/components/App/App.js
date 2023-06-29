@@ -3,24 +3,29 @@ import './App.css';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
-import moviesList from '../../constants/moviesList';
 import { Routes, Route, useNavigate } from 'react-router-dom';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import * as mainApi from '../../utils/MainApi.js';
+import * as moviesApi from '../../utils/MoviesApi.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
+import { filterMovies } from '../../utils/Filtration';
 
 function App() {
 
   const navigate = useNavigate();
 
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = React.useState(false);
-  const [loggedIn, setLoggedIn] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(true);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
   const [currentUser, setCurrentUser] = React.useState({});
+  const [filteredmovies, setFilteredMovies] = React.useState([]);
+  const [searchString, setSearchString] = React.useState("");
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const [isLoading, setIsLoading] = React.useState(false);
 
   function handleBurgerMenuOpen(){
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
@@ -32,8 +37,8 @@ function App() {
       .then((res) => {
         if (res) {
           handleGetUser();
-          navigate('/movies', {replace: true});
           setLoggedIn(true);
+          navigate('/movies', {replace: true});
         }
       })
       .catch((err) => {
@@ -59,6 +64,7 @@ function App() {
       .then((res) => {
         setLoggedIn(false);
         navigate('/', {replace: true});
+        localStorage.removeItem("movies");
       })
       .catch((err) => {
         console.log(err);
@@ -70,10 +76,10 @@ function App() {
     mainApi.editUserInfo({ name, email })
       .then((data) => {
         setCurrentUser(data);
-        // closeAllPopups();
       })
       .catch((err) => {
         console.log(err);
+        setFormErrorMessage(err);
       });
   }
 
@@ -82,12 +88,40 @@ function App() {
       .then((res) => {
         if (res) {
           setCurrentUser(res);
+          console.log(loggedIn);
           setLoggedIn(true);
         }
       })
       .catch((err) => {
         console.log(err);
+        setLoggedIn(false);
+        console.log(loggedIn);
       });
+  }
+
+  function handleGetAllMovies() {
+    setIsLoading(true);
+    if (searchString === "") {
+      setErrorMessage("Нужно ввести ключевое слово");
+    } else {
+      setErrorMessage("");
+      moviesApi.getAllMovies()
+        .then((res) => {
+          if (res) {
+            console.log(filterMovies(res, searchString));
+            localStorage.setItem('movies', res);
+            localStorage.setItem('searchString', searchString);
+            // localStorage.setItem((movies, searchString));
+            setFilteredMovies(filterMovies(res, searchString));
+          }
+        })
+        .catch((err) => {
+          console.log(err);
+        })
+        .finally(() => {
+          setIsLoading(false);
+        });
+    }
   }
 
   React.useEffect(() => {
@@ -100,14 +134,18 @@ function App() {
         <Routes>
             <Route path="/signup" element={
               <Register
+                loggedIn={loggedIn}
                 handleRegister={handleRegister}
                 errorMessage={formErrorMessage}
+                setFormErrorMessage={setFormErrorMessage}
               />}
             />
             <Route path="/signin" element={
               <Login
+                loggedIn={loggedIn}
                 handleLogin={handleLogin}
                 errorMessage={formErrorMessage}
+                setFormErrorMessage={setFormErrorMessage}
               />}
             />
             <Route path="/profile" element={
@@ -119,19 +157,28 @@ function App() {
                 handleLogout={handleLogout}
                 handleUpdateUser={handleUpdateUser}
                 errorMessage={formErrorMessage}
+                setFormErrorMessage={setFormErrorMessage}
               />}
             />
             <Route path="/movies" element={
-              <Movies
-                movies={moviesList}
+              <ProtectedRoute
+                element={Movies}
+                loggedIn={loggedIn}
+                movies={filteredmovies}
                 onBurgerButtonClick={handleBurgerMenuOpen}
                 onBurgerLinkClick={handleBurgerMenuOpen}
                 isBurgerMenuOpen = {isBurgerMenuOpen}
+                onSearchButtonSubmit={handleGetAllMovies}
+                searchString={searchString}
+                setSearchString={setSearchString}
+                errorMessage={errorMessage}
+                isLoading={isLoading}
               />}
             />
             <Route path="/saved-movies" element={
-              <SavedMovies
-                movies={moviesList}
+              <ProtectedRoute
+                element={SavedMovies}
+                loggedIn={loggedIn}
                 onBurgerButtonClick={handleBurgerMenuOpen}
                 onBurgerLinkClick={handleBurgerMenuOpen}
                 isBurgerMenuOpen = {isBurgerMenuOpen}

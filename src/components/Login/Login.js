@@ -3,59 +3,67 @@ import Form from '../Form/Form';
 import FormSignature from '../FormSignature/FormSignature';
 import Greeting from '../Greeting/Greeting';
 import './Login.css';
+import useFormWithValidation from "../../hooks/useValidation";
+import { Navigate } from 'react-router-dom';
 
-function Login({ handleLogin, errorMessage }) {
+function Login({ handleLogin, errorMessage, setFormErrorMessage, loggedIn }) {
 
-  const [formValue, setFormValue] = React.useState({email: '', password: ''});
-
-  const handleChange = (evt) => {
-    const {name, value} = evt.target;
-    setFormValue({...formValue, [name]: value});
-  }
+  const { values, errors, isValid, handleChange } = useFormWithValidation();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
-    handleLogin(formValue);
+    handleLogin(values);
   }
 
-  return (
-    <main className="login">
-      <div className="login__container">
-        <Greeting text="Рады видеть!"/>
-        <Form
-          buttonText="Войти"
-          handleSubmit={handleSubmit}
-          errorMessage={errorMessage}>
-          <label className="form__input-label form__input-label_type_auth">
-            E-mail
-          </label>
-          <input className="form__input"
-            type="email"
-            id="email-input"
-            name="email"
-            placeholder="Введите e-mail..."
-            onChange={handleChange}
-            required>
-          </input>
-          <label className="form__input-label form__input-label_type_auth">
-            Пароль
-          </label>
-          <input className="form__input"
-            type="password"
-            id="password-input"
-            name="password"
-            placeholder="Введите пароль..."
-            onChange={handleChange}
-            required>
-          </input>
-        </Form>
-        <FormSignature
-          text="Ещё не зарегистрированы?"
-          path="/signup"
-          buttonText="Регистрация"/>
-      </div>
-    </main>
-  );
+  if (loggedIn) {
+    return <Navigate to="/" replace="true" />
+  } else {
+    return (
+      <main className="login">
+        <div className="login__container">
+          <Greeting text="Рады видеть!"/>
+          <Form
+            buttonText="Войти"
+            handleSubmit={handleSubmit}
+            errorMessage={errorMessage}
+            setFormErrorMessage={setFormErrorMessage}
+            isValid={isValid}>
+            <label className="form__input-label form__input-label_type_auth">
+              E-mail
+              <input className={`form__input form__input_type_auth ${errors.email ? "form__input_type_error" : ""}`}
+                type="email"
+                id="email-input"
+                name="email"
+                placeholder="Введите e-mail..."
+                value={values.email || ""}
+                onChange={handleChange}
+                required>
+              </input>
+              <span className="form__info-error">{errors.email || ""}</span>
+            </label>
+            <label className="form__input-label form__input-label_type_auth">
+              Пароль
+              <input className={`form__input form__input_type_auth ${errors.password ? "form__input_type_error" : ""}`}
+                type="password"
+                id="password-input"
+                name="password"
+                placeholder="Введите пароль..."
+                minLength="6"
+                value={values.password || ""}
+                onChange={handleChange}
+                required>
+              </input>
+              <span className="form__info-error">{errors.password || ""}</span>
+            </label>
+          </Form>
+          <FormSignature
+            text="Ещё не зарегистрированы?"
+            path="/signup"
+            buttonText="Регистрация"/>
+        </div>
+      </main>
+    );
+  }
 }
 
 export default Login;
