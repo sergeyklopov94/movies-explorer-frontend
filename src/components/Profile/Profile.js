@@ -5,41 +5,37 @@ import './Profile.css';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import useFormWithValidation from "../../hooks/useValidation";
+import Preloader from '../Preloader/Preloader';
 
-function Profile({ onBurgerButtonClick, isBurgerMenuOpen, handleLogout, handleUpdateUser, errorMessage, setFormErrorMessage }) {
+function Profile({
+  onBurgerButtonClick,
+  isBurgerMenuOpen,
+  handleLogout,
+  handleUpdateUser,
+  errorMessage,
+  setFormErrorMessage,
+  formSuccessMessage,
+  setFormSuccessMessage,
+  isLoading }) {
 
   const { values, errors, isValid, handleChange, resetForm } = useFormWithValidation();
 
   const [isEdit, setEditState] = React.useState(false);
-  // const [name, setName] = React.useState('');
-  // const [email, setEmail] = React.useState('');
 
   const currentUser = React.useContext(CurrentUserContext);
 
   function handleEditClick() {
     console.log(errorMessage);
-    if (errorMessage === "")
-      setEditState(!isEdit);
+    setEditState(!isEdit);
+    setFormErrorMessage("");
+    setFormSuccessMessage("");
   }
-
-  // function handleNameChange(evt) {
-  //   setName(evt.target.value);
-  // }
-
-  // function handleEmailChange(evt) {
-  //   setEmail(evt.target.value);
-  // }
 
   React.useEffect(() => {
     console.log(currentUser);
     resetForm(
-      { name: currentUser.name, email: currentUser.email }, {}, false);
+      { name: currentUser.name, email: currentUser.email }, {}, {}, false);
   }, [resetForm, currentUser]);
-
-  // React.useEffect(() => {
-  //   setName(currentUser.name);
-  //   setEmail(currentUser.email);
-  // }, [currentUser]);
 
   function handleEditProfileSubmit(evt) {
     evt.preventDefault();
@@ -61,6 +57,11 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen, handleLogout, handleUp
         isBurgerMenuOpen={isBurgerMenuOpen}
       />
       <main className="profile">
+        {
+        (isLoading === true) && (<Preloader />)
+        }
+        {
+        (isLoading === false) && (
         <div className="profile-container">
           <h2 className="profile-container__title">Привет, {currentUser.name}!</h2>
           <Form
@@ -69,6 +70,8 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen, handleLogout, handleUp
             handleSubmit={handleEditProfileSubmit}
             errorMessage={errorMessage}
             setFormErrorMessage={setFormErrorMessage}
+            formSuccessMessage={formSuccessMessage}
+            setFormSuccessMessage={setFormSuccessMessage}
             isValid={isValid}
             handleClick={handleEditClick}>
             <div className="form__input-container">
@@ -119,6 +122,7 @@ function Profile({ onBurgerButtonClick, isBurgerMenuOpen, handleLogout, handleUp
             </button>
           </div>
         </div>
+        )}
       </main>
     </>
   );

@@ -1,6 +1,5 @@
 .burger-menu-button {
   display: none;
-  background-color: inherit;
   background-position: center;
   background-size: contain;
   background-repeat: no-repeat;
@@ -17,12 +16,14 @@
 }
 
 .burger-menu-button_type_lines {
+  background-color: inherit;
   width: 44px;
   height: 44px;
   background-image: url("../../images/burger-button.svg");
 }
 
 .burger-menu-button_type_x {
+  background-color: #fff;
   width: 22px;
   height: 22px;
   background-image: url("../../images/delete-button.svg");

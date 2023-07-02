@@ -5,8 +5,16 @@ import Greeting from '../Greeting/Greeting';
 import './Register.css';
 import useFormWithValidation from "../../hooks/useValidation";
 import { Navigate } from 'react-router-dom';
+import Preloader from '../Preloader/Preloader';
 
-function Register({ handleRegister, errorMessage, setFormErrorMessage, loggedIn }) {
+function Register({
+  handleRegister,
+  errorMessage,
+  setFormErrorMessage,
+  loggedIn,
+  formSuccessMessage,
+  setFormSuccessMessage,
+  isLoading }) {
 
   const { values, errors, isValid, handleChange } = useFormWithValidation();
 
@@ -20,6 +28,11 @@ function Register({ handleRegister, errorMessage, setFormErrorMessage, loggedIn 
   } else {
     return (
       <main className="register">
+        {
+        (isLoading === true) && (<Preloader />)
+        }
+        {
+        (isLoading === false) && (
         <div className="register__container">
           <Greeting text="Добро пожаловать!"/>
           <Form
@@ -27,6 +40,8 @@ function Register({ handleRegister, errorMessage, setFormErrorMessage, loggedIn 
             handleSubmit={handleSubmit}
             errorMessage={errorMessage}
             setFormErrorMessage={setFormErrorMessage}
+            formSuccessMessage={formSuccessMessage}
+            setFormSuccessMessage={setFormSuccessMessage}
             isValid={isValid}>
             <label className="form__input-label form__input-label_type_auth">
               Имя
@@ -74,6 +89,7 @@ function Register({ handleRegister, errorMessage, setFormErrorMessage, loggedIn 
             path="/signin"
             buttonText="Войти"/>
         </div>
+        )}
       </main>
     );
   }

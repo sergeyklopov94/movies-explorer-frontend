@@ -1,3 +1,4 @@
+import React from 'react';
 import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import Footer from '../Footer/Footer';
 import Header from '../Header/Header';
@@ -11,11 +12,14 @@ function Movies({
   onBurgerButtonClick,
   onBurgerLinkClick,
   onSearchButtonSubmit,
-  searchString,
-  setSearchString,
   errorMessage,
-  isLoading
+  isLoading,
+  allMoviesError,
+  handleGetShortMovies,
+  onMovieLike,
+  handleGetFilteredMovies
  }) {
+
   return (
     <>
       <BurgerMenu
@@ -30,13 +34,19 @@ function Movies({
       <main className="movies">
         <SearchForm
           handleSearchButtonSubmit={onSearchButtonSubmit}
-          searchString={searchString}
-          setSearchString={setSearchString}
           errorMessage={errorMessage}
+          handleGetShortMovies={handleGetShortMovies}
+          handleGetFilteredMovies={handleGetFilteredMovies}
+          // values={values}
+          // checkes={checkes}
+          // handleChange={handleChange}
+          // resetForm={resetForm}
         />
         <MoviesCardList
           movies={movies}
           isLoading={isLoading}
+          allMoviesError={allMoviesError}
+          onMovieLike={onMovieLike}
         />
       </main>
       <Footer/>

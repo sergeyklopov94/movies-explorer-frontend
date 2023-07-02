@@ -111,12 +111,18 @@
   left: 0;
 }
 
-.form__error-message {
-  margin-bottom: 20px;
+.form__message {
   padding: 0;
   text-align: center;
   font-size: 11px;
+}
+
+.form__message_type_error {
   color: #ee3465;
+}
+
+.form__message_type_success {
+  color: #2be080;
 }
 
 .form__button {
@@ -132,6 +138,7 @@
   text-align: center;
   color: #fff;
   cursor: pointer;
+  margin-top: 20px;
   transition: .5s ease;
 }
 
@@ -170,6 +177,10 @@
 
   .form__input-container:last-of-type {
     margin-bottom: 379px;
+  }
+
+  .form__input-label_type_auth {
+    margin-bottom: 45px;
   }
 
   .form__button {

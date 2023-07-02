@@ -3,7 +3,7 @@ import { useLocation } from 'react-router-dom';
 import DecorLine from '../DecorLine/DecorLine';
 import './MoviesCard.css';
 
-function MoviesCard({ movie }) {
+function MoviesCard({ movie, onMovieLike }) {
 
   const location = useLocation();
 
@@ -17,6 +17,7 @@ function MoviesCard({ movie }) {
   ( "movies-card__button_type_delete");
 
   function handleMovieClick() {
+    onMovieLike(movie, setSelectedMovie);
     if (!isLiked)
       setSelectedMovie(true);
     else setSelectedMovie(false);

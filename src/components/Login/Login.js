@@ -5,8 +5,16 @@ import Greeting from '../Greeting/Greeting';
 import './Login.css';
 import useFormWithValidation from "../../hooks/useValidation";
 import { Navigate } from 'react-router-dom';
+import Preloader from '../Preloader/Preloader';
 
-function Login({ handleLogin, errorMessage, setFormErrorMessage, loggedIn }) {
+function Login({
+  handleLogin,
+  errorMessage,
+  setFormErrorMessage,
+  loggedIn,
+  formSuccessMessage,
+  setFormSuccessMessage,
+  isLoading }) {
 
   const { values, errors, isValid, handleChange } = useFormWithValidation();
 
@@ -20,6 +28,11 @@ function Login({ handleLogin, errorMessage, setFormErrorMessage, loggedIn }) {
   } else {
     return (
       <main className="login">
+        {
+        (isLoading === true) && (<Preloader />)
+        }
+        {
+        (isLoading === false) && (
         <div className="login__container">
           <Greeting text="Рады видеть!"/>
           <Form
@@ -27,6 +40,8 @@ function Login({ handleLogin, errorMessage, setFormErrorMessage, loggedIn }) {
             handleSubmit={handleSubmit}
             errorMessage={errorMessage}
             setFormErrorMessage={setFormErrorMessage}
+            formSuccessMessage={formSuccessMessage}
+            setFormSuccessMessage={setFormSuccessMessage}
             isValid={isValid}>
             <label className="form__input-label form__input-label_type_auth">
               E-mail
@@ -61,6 +76,7 @@ function Login({ handleLogin, errorMessage, setFormErrorMessage, loggedIn }) {
             path="/signup"
             buttonText="Регистрация"/>
         </div>
+        )}
       </main>
     );
   }

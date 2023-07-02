@@ -12,7 +12,7 @@ import * as mainApi from '../../utils/MainApi.js';
 import * as moviesApi from '../../utils/MoviesApi.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { filterMovies } from '../../utils/Filtration';
+import { filterMovies, filterShortMovies } from '../../utils/Filtration';
 
 function App() {
 
@@ -21,11 +21,13 @@ function App() {
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(true);
   const [formErrorMessage, setFormErrorMessage] = React.useState("");
+  const [formSuccessMessage, setFormSuccessMessage] = React.useState("");
   const [currentUser, setCurrentUser] = React.useState({});
-  const [filteredmovies, setFilteredMovies] = React.useState([]);
-  const [searchString, setSearchString] = React.useState("");
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
+  const [savedMovies, setSavedMovies] = React.useState([]);
   const [errorMessage, setErrorMessage] = React.useState("");
   const [isLoading, setIsLoading] = React.useState(false);
+  const [allMoviesError, setAllMoviesError] = React.useState(false);
 
   function handleBurgerMenuOpen(){
     setIsBurgerMenuOpen(!isBurgerMenuOpen);
@@ -33,10 +35,12 @@ function App() {
 
   function handleLogin(formValue) {
     const { email, password } = formValue;
+    setIsLoading(true);
     mainApi.authorize(email, password)
       .then((res) => {
         if (res) {
           handleGetUser();
+          setFormSuccessMessage("Вы успешно авторизовались!");
           setLoggedIn(true);
           navigate('/movies', {replace: true});
         }
@@ -44,42 +48,64 @@ function App() {
       .catch((err) => {
         console.log(err);
         setFormErrorMessage(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   function handleRegister(formValue) {
+    setIsLoading(true);
     const { name, password, email } = formValue;
     mainApi.register(name, password, email)
       .then((res) => {
+        setFormSuccessMessage("Вы успешно зарегистрировались!");
         handleLogin(formValue);
       })
       .catch((err) => {
         console.log(err);
         setFormErrorMessage(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
   function handleLogout() {
+    setIsLoading(true);
     mainApi.logout()
       .then((res) => {
         setLoggedIn(false);
         navigate('/', {replace: true});
+        setFilteredMovies([]);
         localStorage.removeItem("movies");
+        localStorage.removeItem("filteredMovies");
+        localStorage.removeItem("filteredShortMovies");
+        localStorage.removeItem("searchString");
+        localStorage.removeItem("searchCheckBoxState");
       })
       .catch((err) => {
         console.log(err);
         setFormErrorMessage(err);
+    })
+    .finally(() => {
+      setIsLoading(false);
     });
   }
 
   function handleUpdateUser({ name, email }) {
+    setIsLoading(true);
     mainApi.editUserInfo({ name, email })
       .then((data) => {
         setCurrentUser(data);
+        setFormSuccessMessage("Профиль успешно отредактирован!");
       })
       .catch((err) => {
         console.log(err);
         setFormErrorMessage(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
       });
   }
 
@@ -88,40 +114,105 @@ function App() {
       .then((res) => {
         if (res) {
           setCurrentUser(res);
-          console.log(loggedIn);
           setLoggedIn(true);
         }
       })
       .catch((err) => {
         console.log(err);
         setLoggedIn(false);
-        console.log(loggedIn);
       });
   }
 
-  function handleGetAllMovies() {
+  async function getAllMovies() {
     setIsLoading(true);
-    if (searchString === "") {
+    setAllMoviesError(false);
+    await moviesApi.getAllMovies()
+    .then((res) => {
+      if (res) {
+        localStorage.setItem("movies", JSON.stringify(res));
+      }
+    })
+    .catch((err) => {
+      setAllMoviesError(true);
+      console.log(err);
+    })
+    .finally(() => {
+      setIsLoading(false);
+    });
+  }
+
+  async function getLikedMovies() {
+    setIsLoading(true);
+    setAllMoviesError(false);
+    await mainApi.getLikedMovies()
+      .then((res) => {
+        if (res) {
+          setSavedMovies(res);
+        }
+      })
+      .catch((err) => {
+        setAllMoviesError(true);
+        console.log(err);
+      })
+      .finally(() => {
+        setIsLoading(false);
+      });
+  }
+
+  async function handleSetMovies(value, checked) {
+    if (value.searchString === "" ) {
       setErrorMessage("Нужно ввести ключевое слово");
     } else {
       setErrorMessage("");
-      moviesApi.getAllMovies()
-        .then((res) => {
-          if (res) {
-            console.log(filterMovies(res, searchString));
-            localStorage.setItem('movies', res);
-            localStorage.setItem('searchString', searchString);
-            // localStorage.setItem((movies, searchString));
-            setFilteredMovies(filterMovies(res, searchString));
-          }
-        })
-        .catch((err) => {
-          console.log(err);
-        })
-        .finally(() => {
-          setIsLoading(false);
-        });
+      console.log(checked.searchCheckBoxState);
+      localStorage.setItem("searchString", value.searchString);
+      localStorage.setItem("searchCheckBoxState", checked.searchCheckBoxState);
+      if (localStorage.getItem("movies") === null) {
+        await getAllMovies();
+      }
+      handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies")));
     }
+  }
+
+  function handleGetFilteredMovies(movies) {
+    const searchString = localStorage.getItem("searchString");
+    const searchCheckBoxState = JSON.parse(localStorage.getItem("searchCheckBoxState"));
+    console.log(searchString);
+    console.log(searchCheckBoxState);
+    console.log(movies);
+    localStorage.setItem("filteredMovies", JSON.stringify(filterMovies(movies, searchString)));
+    const filteredMovies = JSON.parse(localStorage.getItem("filteredMovies"));
+    if (searchCheckBoxState) {
+      localStorage.setItem("filteredShortMovies", JSON.stringify(filterShortMovies(filteredMovies, searchCheckBoxState)));
+      const filteredShortMovies = JSON.parse(localStorage.getItem("filteredShortMovies"));
+      setFilteredMovies(filteredShortMovies);
+    } else setFilteredMovies(filteredMovies);
+  }
+
+  function handleMovieLike(movie, setSelectedMovie) {
+    console.log(movie);
+    mainApi.likeMovie({
+      country: movie.country,
+      director: movie.director,
+      duration: movie.duration,
+      year: movie.year,
+      description: movie.description,
+      image: `https://api.nomoreparties.co${movie.image.url}`,
+      trailerLink: movie.trailerLink,
+      thumbnail: `https://api.nomoreparties.co${movie.image.formats.thumbnail.url}`,
+      movieId: movie.id,
+      nameRU: movie.nameRU,
+      nameEN: movie.nameEN,
+    })
+      .then((newMovie) => {
+        //setSavedMovies([newMovie]);
+        setSavedMovies((state) => state.map((c) => c.id === movie.id ? newMovie : c));
+        //setSelectedMovie(true);
+        console.log(savedMovies);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
   }
 
   React.useEffect(() => {
@@ -138,6 +229,9 @@ function App() {
                 handleRegister={handleRegister}
                 errorMessage={formErrorMessage}
                 setFormErrorMessage={setFormErrorMessage}
+                formSuccessMessage={formSuccessMessage}
+                setFormSuccessMessage={setFormSuccessMessage}
+                isLoading={isLoading}
               />}
             />
             <Route path="/signin" element={
@@ -146,6 +240,9 @@ function App() {
                 handleLogin={handleLogin}
                 errorMessage={formErrorMessage}
                 setFormErrorMessage={setFormErrorMessage}
+                formSuccessMessage={formSuccessMessage}
+                setFormSuccessMessage={setFormSuccessMessage}
+                isLoading={isLoading}
               />}
             />
             <Route path="/profile" element={
@@ -158,21 +255,25 @@ function App() {
                 handleUpdateUser={handleUpdateUser}
                 errorMessage={formErrorMessage}
                 setFormErrorMessage={setFormErrorMessage}
+                formSuccessMessage={formSuccessMessage}
+                setFormSuccessMessage={setFormSuccessMessage}
+                isLoading={isLoading}
               />}
             />
             <Route path="/movies" element={
               <ProtectedRoute
                 element={Movies}
                 loggedIn={loggedIn}
-                movies={filteredmovies}
+                movies={filteredMovies}
                 onBurgerButtonClick={handleBurgerMenuOpen}
                 onBurgerLinkClick={handleBurgerMenuOpen}
                 isBurgerMenuOpen = {isBurgerMenuOpen}
-                onSearchButtonSubmit={handleGetAllMovies}
-                searchString={searchString}
-                setSearchString={setSearchString}
+                onSearchButtonSubmit={handleSetMovies}
                 errorMessage={errorMessage}
                 isLoading={isLoading}
+                allMoviesError={allMoviesError}
+                onMovieLike={handleMovieLike}
+                handleGetFilteredMovies={handleGetFilteredMovies}
               />}
             />
             <Route path="/saved-movies" element={
@@ -182,11 +283,15 @@ function App() {
                 onBurgerButtonClick={handleBurgerMenuOpen}
                 onBurgerLinkClick={handleBurgerMenuOpen}
                 isBurgerMenuOpen = {isBurgerMenuOpen}
+                movies={savedMovies}
               />}
             />
             <Route path="/" element={
               <Main
                 loggedIn={loggedIn}
+                onBurgerButtonClick={handleBurgerMenuOpen}
+                onBurgerLinkClick={handleBurgerMenuOpen}
+                isBurgerMenuOpen = {isBurgerMenuOpen}
               />}
             />
             <Route path="/*" element={

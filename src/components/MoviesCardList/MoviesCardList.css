@@ -38,12 +38,14 @@
 }
 
 .moviies-card-list__search-result {
+  width: 100%;
   color: #a0a0a0;
   font-weight: 500;
   font-size: 28px;
   line-height: 34px;
-  position: absolute;
-
+  margin: 0 auto;
+  text-align: center;
+  transition: .5s ease;
 }
 
 @media screen and (max-width: 904px){
@@ -63,5 +65,10 @@
 
   .movies-card-list__container {
     gap: 34px;
+  }
+
+  .moviies-card-list__search-result {
+    font-size: 18px;
+    line-height: 22px;
   }
 }

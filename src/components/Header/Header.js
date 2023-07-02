@@ -11,6 +11,7 @@ function Header({ color, onBurgerButtonClick, isBurgerMenuOpen, loggedIn }) {
       <BurgerMenuButton
         onBurgerButtonClick={onBurgerButtonClick}
         isBurgerMenuOpen={isBurgerMenuOpen}
+        loggedIn={loggedIn}
       />
     </header>
   );

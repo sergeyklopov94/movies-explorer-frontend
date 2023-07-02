@@ -88,4 +88,60 @@ export const authorize = (email, password) => {
         return res.json();
       return res.json().then((err) => Promise.reject(err.message));
     });
-  }
+  };
+
+  export function likeMovie({
+    country,
+    director,
+    duration,
+    year,
+    description,
+    image,
+    trailerLink,
+    thumbnail,
+    movieId,
+    nameRU,
+    nameEN }) {
+    return fetch(`${BASE_URL}/movies`, {
+      method: 'POST',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+      credentials: 'include',
+      body: JSON.stringify({
+        country,
+        director,
+        duration,
+        year,
+        description,
+        image,
+        trailerLink,
+        thumbnail,
+        movieId,
+        nameRU,
+        nameEN
+      })
+    })
+    .then((res) => {
+      if (res.ok)
+        return res.json();
+      return res.json().then((err) => Promise.reject(err.message));
+    });
+  };
+
+  export function getLikedMovies() {
+    return fetch(`${BASE_URL}/movies`, {
+      method: "GET",
+      credentials: 'include',
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+      })
+      .then((res) => {
+        if (res.ok)
+          return res.json();
+        return res.json().then((err) => Promise.reject(err.message));
+    });
+  };
