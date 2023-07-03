@@ -229,8 +229,6 @@ function App() {
                 handleRegister={handleRegister}
                 errorMessage={formErrorMessage}
                 setFormErrorMessage={setFormErrorMessage}
-                formSuccessMessage={formSuccessMessage}
-                setFormSuccessMessage={setFormSuccessMessage}
                 isLoading={isLoading}
               />}
             />
@@ -240,8 +238,6 @@ function App() {
                 handleLogin={handleLogin}
                 errorMessage={formErrorMessage}
                 setFormErrorMessage={setFormErrorMessage}
-                formSuccessMessage={formSuccessMessage}
-                setFormSuccessMessage={setFormSuccessMessage}
                 isLoading={isLoading}
               />}
             />

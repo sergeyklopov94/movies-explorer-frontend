@@ -12,8 +12,6 @@ function Register({
   errorMessage,
   setFormErrorMessage,
   loggedIn,
-  formSuccessMessage,
-  setFormSuccessMessage,
   isLoading }) {
 
   const { values, errors, isValid, handleChange } = useFormWithValidation();
@@ -22,6 +20,10 @@ function Register({
     evt.preventDefault();
     handleRegister(values);
   }
+
+  React.useEffect(() => {
+    setFormErrorMessage("");
+  }, [setFormErrorMessage]);
 
   if (loggedIn) {
     return <Navigate to="/" replace="true" />
@@ -40,8 +42,6 @@ function Register({
             handleSubmit={handleSubmit}
             errorMessage={errorMessage}
             setFormErrorMessage={setFormErrorMessage}
-            formSuccessMessage={formSuccessMessage}
-            setFormSuccessMessage={setFormSuccessMessage}
             isValid={isValid}>
             <label className="form__input-label form__input-label_type_auth">
               Имя

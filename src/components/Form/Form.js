@@ -24,14 +24,6 @@ function Form({
   ( "form__button_invisible" ) :
   ( "");
 
-  React.useEffect(() => {
-    setFormErrorMessage("");
-  }, [setFormErrorMessage]);
-
-  React.useEffect(() => {
-    setFormSuccessMessage("");
-  }, [setFormSuccessMessage]);
-
   return (
     <form
       className={ formClassName }
