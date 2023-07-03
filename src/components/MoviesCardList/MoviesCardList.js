@@ -9,12 +9,12 @@ function MoviesCardList({ movies, isLoading, allMoviesError, onMovieLike }) {
   ( "movies-card-list__more-button") :
   ( "movies-card-list__more-button movies-card__like-button_disactive");
 
-  React.useEffect(() => {
-    // if (localStorage.getItem("filteredMovies") !== null) {
-    //   localStorage.setItem("searchCheckBoxState", checkes.searchCheckBoxState);
-    //   handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies")));
-    //}
-  }, []);
+  // React.useEffect(() => {
+  //   // if (localStorage.getItem("filteredMovies") !== null) {
+  //   //   localStorage.setItem("searchCheckBoxState", checkes.searchCheckBoxState);
+  //   //   handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies")));
+  //   //}
+  // }, []);
 
   return (
     <section className="movies-card-list">
@@ -36,7 +36,7 @@ function MoviesCardList({ movies, isLoading, allMoviesError, onMovieLike }) {
             <MoviesCard
               movie={movie}
               key={movie.id}
-              onMovieLike={onMovieLike}/>
+              />
           ))}
         </ul>)
       }

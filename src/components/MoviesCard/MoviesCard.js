@@ -16,6 +16,10 @@ function MoviesCard({ movie, onMovieLike }) {
   ( "movies-card__button_type_like") :
   ( "movies-card__button_type_delete");
 
+  const movieImageSrcClassName = (location.pathname === "/movies") ?
+  (`https://api.nomoreparties.co${movie.image.url}`) :
+  (`${movie.image}`);
+
   function handleMovieClick() {
     onMovieLike(movie, setSelectedMovie);
     if (!isLiked)
@@ -40,7 +44,7 @@ function MoviesCard({ movie, onMovieLike }) {
         target="_blank"
         rel="noreferrer"
       >
-        <img className="movies-card__image" src={`https://api.nomoreparties.co${movie.image.url}`} alt={ movie.nameRU }/>
+        <img className="movies-card__image" src={movieImageSrcClassName} alt={ movie.nameRU }/>
       </a>
       <div className="movies-card__info">
         <h2 className="movies-card__name">{ movie.nameRU }</h2>

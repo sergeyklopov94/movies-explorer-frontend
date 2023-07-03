@@ -32,6 +32,14 @@ function Profile({
   }
 
   React.useEffect(() => {
+    setFormErrorMessage("");
+  }, [setFormErrorMessage]);
+
+  React.useEffect(() => {
+    setFormSuccessMessage("");
+  }, [setFormSuccessMessage]);
+
+  React.useEffect(() => {
     console.log(currentUser);
     resetForm(
       { name: currentUser.name, email: currentUser.email }, {}, {}, false);

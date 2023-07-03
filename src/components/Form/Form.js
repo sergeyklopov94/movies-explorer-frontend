@@ -9,10 +9,9 @@ function Form({
   handleSubmit,
   errorMessage,
   handleClick,
-  setFormErrorMessage,
   isValid,
-  formSuccessMessage,
-  setFormSuccessMessage }) {
+  formSuccessMessage
+}) {
 
   const location = useLocation();
 

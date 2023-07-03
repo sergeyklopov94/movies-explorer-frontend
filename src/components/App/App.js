@@ -13,10 +13,12 @@ import * as moviesApi from '../../utils/MoviesApi.js';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 import { filterMovies, filterShortMovies } from '../../utils/Filtration';
+import { useLocation } from 'react-router-dom';
 
 function App() {
 
   const navigate = useNavigate();
+  const location = useLocation();
 
   const [isBurgerMenuOpen, setIsBurgerMenuOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(true);
@@ -83,6 +85,8 @@ function App() {
         localStorage.removeItem("filteredShortMovies");
         localStorage.removeItem("searchString");
         localStorage.removeItem("searchCheckBoxState");
+        setFormErrorMessage("");
+        setFormSuccessMessage("");
       })
       .catch((err) => {
         console.log(err);
@@ -141,13 +145,15 @@ function App() {
     });
   }
 
-  async function getLikedMovies() {
+  async function getAllSavedMovies() {
     setIsLoading(true);
     setAllMoviesError(false);
     await mainApi.getLikedMovies()
       .then((res) => {
         if (res) {
+          localStorage.setItem("savedMovies", JSON.stringify(res));
           setSavedMovies(res);
+          console.log(res);
         }
       })
       .catch((err) => {
@@ -170,23 +176,32 @@ function App() {
       if (localStorage.getItem("movies") === null) {
         await getAllMovies();
       }
-      handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies")));
+      const filteredMovies = handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies")));
+      setFilteredMovies(filteredMovies);
     }
   }
 
+  async function handleSetSavedMovies(value, checked) {
+    localStorage.setItem("savedSearchString", value.searchString);
+    localStorage.setItem("savedSearchCheckBoxState", checked.searchCheckBoxState);
+    const filteredMovies = handleGetFilteredMovies(JSON.parse(localStorage.getItem("savedMovies")));
+    setSavedMovies(filteredMovies);
+  }
+
   function handleGetFilteredMovies(movies) {
-    const searchString = localStorage.getItem("searchString");
-    const searchCheckBoxState = JSON.parse(localStorage.getItem("searchCheckBoxState"));
-    console.log(searchString);
-    console.log(searchCheckBoxState);
-    console.log(movies);
+    let searchString = localStorage.getItem("searchString");
+    let searchCheckBoxState = JSON.parse(localStorage.getItem("searchCheckBoxState"));
+    if (location.pathname === "/saved-movies"){
+      searchString = localStorage.getItem("savedSearchString");
+      searchCheckBoxState = JSON.parse(localStorage.getItem("savedSearchCheckBoxState"));
+    }
     localStorage.setItem("filteredMovies", JSON.stringify(filterMovies(movies, searchString)));
     const filteredMovies = JSON.parse(localStorage.getItem("filteredMovies"));
     if (searchCheckBoxState) {
       localStorage.setItem("filteredShortMovies", JSON.stringify(filterShortMovies(filteredMovies, searchCheckBoxState)));
-      const filteredShortMovies = JSON.parse(localStorage.getItem("filteredShortMovies"));
-      setFilteredMovies(filteredShortMovies);
-    } else setFilteredMovies(filteredMovies);
+      const filteredShortMovies =  JSON.parse(localStorage.getItem("filteredShortMovies"));
+      return filteredShortMovies;
+    } else return filteredMovies;
   }
 
   function handleMovieLike(movie, setSelectedMovie) {
@@ -270,6 +285,7 @@ function App() {
                 allMoviesError={allMoviesError}
                 onMovieLike={handleMovieLike}
                 handleGetFilteredMovies={handleGetFilteredMovies}
+                setFilteredMovies={setFilteredMovies}
               />}
             />
             <Route path="/saved-movies" element={
@@ -279,7 +295,13 @@ function App() {
                 onBurgerButtonClick={handleBurgerMenuOpen}
                 onBurgerLinkClick={handleBurgerMenuOpen}
                 isBurgerMenuOpen = {isBurgerMenuOpen}
-                movies={savedMovies}
+                onSearchButtonSubmit={handleSetSavedMovies}
+                isLoading={isLoading}
+                allMoviesError={allMoviesError}
+                savedMovies={savedMovies}
+                getAllSavedMovies={getAllSavedMovies}
+                setSavedMovies={setSavedMovies}
+                handleGetFilteredMovies={handleGetFilteredMovies}
               />}
             />
             <Route path="/" element={

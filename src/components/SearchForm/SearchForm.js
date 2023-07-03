@@ -1,15 +1,20 @@
 import React from 'react';
 import './SearchForm.css';
 import findLogo from '../../images/find-icon.svg';
-import useFormWithValidation from "../../hooks/useValidation";
+import { useLocation } from 'react-router-dom';
 
 function SearchForm({
   handleSearchButtonSubmit,
   errorMessage,
-  handleGetFilteredMovies
+  handleGetFilteredMovies,
+  setFilteredMovies,
+  setSavedMovies,
+  values,
+  checkes,
+  handleChange
 }) {
 
-  const { values, checkes, handleChange, resetForm } = useFormWithValidation();
+  const location = useLocation();
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -17,32 +22,14 @@ function SearchForm({
   }
 
   const handleCheckboxClick = () => {
-    if (localStorage.getItem("filteredMovies") !== null) {
+    if (localStorage.getItem("filteredMovies") !== null && location.pathname === "/movies") {
       localStorage.setItem("searchCheckBoxState", !checkes.searchCheckBoxState);
-      handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies")));
+      setFilteredMovies(handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies"))));
+    } else {
+      localStorage.setItem("savedSearchCheckBoxState", !checkes.searchCheckBoxState);
+      setSavedMovies(handleGetFilteredMovies(JSON.parse(localStorage.getItem("savedMovies"))));
     }
-   }
-
-  React.useEffect(() => {
-    const searchString = localStorage.getItem("searchString");
-    const searchCheckBoxState = localStorage.getItem("searchCheckBoxState");
-    if (searchString === null || searchString === undefined)
-      localStorage.setItem("searchString", "");
-     if (searchCheckBoxState === null || searchCheckBoxState === undefined)
-       localStorage.setItem("searchCheckBoxState", false);
-      resetForm(
-      { searchString: localStorage.getItem("searchString") },
-      { searchCheckBoxState: JSON.parse(localStorage.getItem("searchCheckBoxState")) },
-      {},
-      false);
-
-      if (localStorage.getItem("movies") !== null)
-        handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies")));
-  }, []);
-
-  React.useEffect(() => {
-    console.log(localStorage.getItem("movies"));
-  }, [checkes.searchCheckBoxState]);
+  }
 
   return (
     <form className="search-form" onSubmit={handleSubmit} noValidate>

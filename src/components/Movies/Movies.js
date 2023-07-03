@@ -5,6 +5,7 @@ import Header from '../Header/Header';
 import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
+import useFormWithValidation from "../../hooks/useValidation";
 
 function Movies({
   movies,
@@ -17,8 +18,33 @@ function Movies({
   allMoviesError,
   handleGetShortMovies,
   onMovieLike,
-  handleGetFilteredMovies
+  handleGetFilteredMovies,
+  setFilteredMovies
  }) {
+
+  const { values, checkes, handleChange, resetForm } = useFormWithValidation();
+
+  React.useEffect(() => {
+    const searchString = localStorage.getItem("searchString");
+    const searchCheckBoxState = localStorage.getItem("searchCheckBoxState");
+    if (searchString === null || searchString === "undefined")
+      localStorage.setItem("searchString", "");
+    console.log(searchCheckBoxState);
+    if (searchCheckBoxState === null || searchCheckBoxState === "undefined"){
+      console.log(searchCheckBoxState);
+      localStorage.setItem("searchCheckBoxState", false);
+    }
+    resetForm(
+    { searchString: localStorage.getItem("searchString") },
+    { searchCheckBoxState: JSON.parse(localStorage.getItem("searchCheckBoxState")) },
+    {},
+    false);
+  }, []);
+
+  React.useEffect(() => {
+    if (localStorage.getItem("movies") !== null)
+      setFilteredMovies(handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies"))));
+  }, []);
 
   return (
     <>
@@ -37,10 +63,10 @@ function Movies({
           errorMessage={errorMessage}
           handleGetShortMovies={handleGetShortMovies}
           handleGetFilteredMovies={handleGetFilteredMovies}
-          // values={values}
-          // checkes={checkes}
-          // handleChange={handleChange}
-          // resetForm={resetForm}
+          setFilteredMovies={setFilteredMovies}
+          values={values}
+          checkes={checkes}
+          handleChange={handleChange}
         />
         <MoviesCardList
           movies={movies}
