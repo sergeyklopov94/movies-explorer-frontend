@@ -25,7 +25,6 @@ function Profile({
   const currentUser = React.useContext(CurrentUserContext);
 
   function handleEditClick() {
-    console.log(errorMessage);
     setEditState(!isEdit);
     setFormErrorMessage("");
     setFormSuccessMessage("");
@@ -40,7 +39,6 @@ function Profile({
   }, [setFormSuccessMessage]);
 
   React.useEffect(() => {
-    console.log(currentUser);
     resetForm(
       { name: currentUser.name, email: currentUser.email }, {}, {}, false);
   }, [resetForm, currentUser]);

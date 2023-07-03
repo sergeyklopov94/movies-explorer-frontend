@@ -130,6 +130,22 @@ export const authorize = (email, password) => {
     });
   };
 
+  export function deleteMovie(movieId) {
+    return fetch(`${BASE_URL}/movies/${movieId}`, {
+      method: 'DELETE',
+      credentials: 'include',
+      headers: {
+        'Accept': 'application/json',
+        'Content-Type': 'application/json'
+      },
+    })
+    .then((res) => {
+      if (res.ok)
+        return res.json();
+      return res.json().then((err) => Promise.reject(err.message));
+    });
+  };
+
   export function getLikedMovies() {
     return fetch(`${BASE_URL}/movies`, {
       method: "GET",

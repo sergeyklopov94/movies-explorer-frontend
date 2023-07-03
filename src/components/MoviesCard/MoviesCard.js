@@ -3,11 +3,10 @@ import { useLocation } from 'react-router-dom';
 import DecorLine from '../DecorLine/DecorLine';
 import './MoviesCard.css';
 
-function MoviesCard({ movie, onMovieLike }) {
+function MoviesCard({ movie, onMovieLike, getSavedMovies }) {
 
   const location = useLocation();
 
-  // временное решение для проверки активного состояния лайка
   const [isLiked, setSelectedMovie] = React.useState(false);
 
   const movieCardButtonClassName = (location.pathname === "/movies" && isLiked) ?
@@ -21,11 +20,14 @@ function MoviesCard({ movie, onMovieLike }) {
   (`${movie.image}`);
 
   function handleMovieClick() {
-    onMovieLike(movie, setSelectedMovie);
-    if (!isLiked)
-      setSelectedMovie(true);
-    else setSelectedMovie(false);
+    onMovieLike(movie, isLiked, setSelectedMovie);
   }
+
+  React.useEffect(() => {
+    if (location.pathname === "/movies") {
+      getSavedMovies(movie, setSelectedMovie);
+    }
+  }, []);
 
   function calculateDuration(duration) {
     const hours = Math.trunc(duration/60);

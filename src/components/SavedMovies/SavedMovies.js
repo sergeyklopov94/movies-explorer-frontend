@@ -17,20 +17,20 @@ function SavedMovies({
   allMoviesError,
   getAllSavedMovies,
   handleGetFilteredMovies,
-  setSavedMovies }) {
+  setSavedMovies,
+  onMovieLike
+ }) {
 
   const { values, checkes, handleChange, resetForm } = useFormWithValidation();
 
   React.useEffect(() => {
-    // const searchString = localStorage.getItem("searchString");
-    // const searchCheckBoxState = localStorage.getItem("searchCheckBoxState");
-    // if (searchString === null || searchString === "undefined")
-    //   localStorage.setItem("searchString", "");
-    // console.log(searchCheckBoxState);
-    // if (searchCheckBoxState === null || searchCheckBoxState === "undefined"){
-    //   console.log(searchCheckBoxState);
-    //   localStorage.setItem("searchCheckBoxState", false);
-    // }
+    const searchString = localStorage.getItem("savedSearchString");
+    const searchCheckBoxState = localStorage.getItem("savedSearchCheckBoxState");
+    if (searchString === null || searchString === "undefined")
+      localStorage.setItem("savedSearchString", "");
+    if (searchCheckBoxState === null || searchCheckBoxState === "undefined"){
+      localStorage.setItem("savedSearchCheckBoxState", false);
+    }
     resetForm(
     { searchString: "" },
     { searchCheckBoxState: false },
@@ -39,7 +39,6 @@ function SavedMovies({
   }, []);
 
   React.useEffect(() => {
-    console.log("монтирование сохраненок");
     getAllSavedMovies();
   }, []);
 
@@ -67,6 +66,7 @@ function SavedMovies({
           movies={savedMovies}
           isLoading={isLoading}
           allMoviesError={allMoviesError}
+          onMovieLike={onMovieLike}
         />
       </main>
       <Footer/>

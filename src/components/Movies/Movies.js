@@ -19,7 +19,8 @@ function Movies({
   handleGetShortMovies,
   onMovieLike,
   handleGetFilteredMovies,
-  setFilteredMovies
+  setFilteredMovies,
+  getSavedMovies
  }) {
 
   const { values, checkes, handleChange, resetForm } = useFormWithValidation();
@@ -29,9 +30,7 @@ function Movies({
     const searchCheckBoxState = localStorage.getItem("searchCheckBoxState");
     if (searchString === null || searchString === "undefined")
       localStorage.setItem("searchString", "");
-    console.log(searchCheckBoxState);
     if (searchCheckBoxState === null || searchCheckBoxState === "undefined"){
-      console.log(searchCheckBoxState);
       localStorage.setItem("searchCheckBoxState", false);
     }
     resetForm(
@@ -73,6 +72,7 @@ function Movies({
           isLoading={isLoading}
           allMoviesError={allMoviesError}
           onMovieLike={onMovieLike}
+          getSavedMovies={getSavedMovies}
         />
       </main>
       <Footer/>

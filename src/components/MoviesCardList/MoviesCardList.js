@@ -3,18 +3,17 @@ import MoviesCard from '../MoviesCard/MoviesCard';
 import './MoviesCardList.css';
 import Preloader from '../Preloader/Preloader';
 
-function MoviesCardList({ movies, isLoading, allMoviesError, onMovieLike }) {
+function MoviesCardList({
+  movies,
+  isLoading,
+  allMoviesError,
+  onMovieLike,
+  getSavedMovies
+}) {
 
   const movieMoreButtonClassName = (movies.length > 9) ?
   ( "movies-card-list__more-button") :
   ( "movies-card-list__more-button movies-card__like-button_disactive");
-
-  // React.useEffect(() => {
-  //   // if (localStorage.getItem("filteredMovies") !== null) {
-  //   //   localStorage.setItem("searchCheckBoxState", checkes.searchCheckBoxState);
-  //   //   handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies")));
-  //   //}
-  // }, []);
 
   return (
     <section className="movies-card-list">
@@ -35,8 +34,9 @@ function MoviesCardList({ movies, isLoading, allMoviesError, onMovieLike }) {
           {movies.map((movie) => (
             <MoviesCard
               movie={movie}
-              key={movie.id}
-              />
+              key={movie.movieId || movie.id}
+              onMovieLike={onMovieLike}
+              getSavedMovies={getSavedMovies}/>
           ))}
         </ul>)
       }

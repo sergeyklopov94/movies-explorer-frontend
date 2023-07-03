@@ -85,6 +85,9 @@ function App() {
         localStorage.removeItem("filteredShortMovies");
         localStorage.removeItem("searchString");
         localStorage.removeItem("searchCheckBoxState");
+        localStorage.removeItem("savedSearchString");
+        localStorage.removeItem("savedSearchCheckBoxState");
+        setErrorMessage("");
         setFormErrorMessage("");
         setFormSuccessMessage("");
       })
@@ -153,7 +156,6 @@ function App() {
         if (res) {
           localStorage.setItem("savedMovies", JSON.stringify(res));
           setSavedMovies(res);
-          console.log(res);
         }
       })
       .catch((err) => {
@@ -170,7 +172,6 @@ function App() {
       setErrorMessage("Нужно ввести ключевое слово");
     } else {
       setErrorMessage("");
-      console.log(checked.searchCheckBoxState);
       localStorage.setItem("searchString", value.searchString);
       localStorage.setItem("searchCheckBoxState", checked.searchCheckBoxState);
       if (localStorage.getItem("movies") === null) {
@@ -204,9 +205,18 @@ function App() {
     } else return filteredMovies;
   }
 
-  function handleMovieLike(movie, setSelectedMovie) {
-    console.log(movie);
-    mainApi.likeMovie({
+  function handleMovieLike(movie, isLiked, setSelectedMovie) {
+    if (isLiked || location.pathname === "/saved-movies") {
+      deleteMovie(movie);
+      setSelectedMovie(false);
+    } else {
+      likeMovie(movie);
+      setSelectedMovie(true);
+    }
+  }
+
+  async function likeMovie(movie) {
+    await mainApi.likeMovie({
       country: movie.country,
       director: movie.director,
       duration: movie.duration,
@@ -219,19 +229,40 @@ function App() {
       nameRU: movie.nameRU,
       nameEN: movie.nameEN,
     })
-      .then((newMovie) => {
-        //setSavedMovies([newMovie]);
-        setSavedMovies((state) => state.map((c) => c.id === movie.id ? newMovie : c));
-        //setSelectedMovie(true);
-        console.log(savedMovies);
+      .then((res) => {
+        setSavedMovies([res, ...savedMovies]);
       })
       .catch((err) => {
         console.log(err);
       });
   }
 
+  async function deleteMovie(movie) {
+    const savedMovie = savedMovies.find(
+      (savedMovie) => savedMovie.movieId === movie.id || savedMovie.movieId === movie.movieId
+    );
+    await mainApi.deleteMovie(savedMovie._id)
+      .then((res) => {
+        setSavedMovies(
+          savedMovies.filter((savedMovie) => savedMovie._id !== movie._id)
+        );
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }
+
+  function getSavedMovies(movie, setSelectedMovie) {
+    const savedMovie = savedMovies.find(
+      (savedMovie) => savedMovie.movieId === movie.id || savedMovie.movieId === movie.movieId
+    );
+    if (savedMovie)
+    setSelectedMovie(movie);
+  }
+
   React.useEffect(() => {
     handleGetUser();
+    getAllSavedMovies();
   }, []);
 
   return (
@@ -286,6 +317,7 @@ function App() {
                 onMovieLike={handleMovieLike}
                 handleGetFilteredMovies={handleGetFilteredMovies}
                 setFilteredMovies={setFilteredMovies}
+                getSavedMovies={getSavedMovies}
               />}
             />
             <Route path="/saved-movies" element={
@@ -302,6 +334,7 @@ function App() {
                 getAllSavedMovies={getAllSavedMovies}
                 setSavedMovies={setSavedMovies}
                 handleGetFilteredMovies={handleGetFilteredMovies}
+                onMovieLike={handleMovieLike}
               />}
             />
             <Route path="/" element={

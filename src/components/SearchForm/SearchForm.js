@@ -25,7 +25,7 @@ function SearchForm({
     if (localStorage.getItem("filteredMovies") !== null && location.pathname === "/movies") {
       localStorage.setItem("searchCheckBoxState", !checkes.searchCheckBoxState);
       setFilteredMovies(handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies"))));
-    } else {
+    } else if (location.pathname === "/saved-movies"){
       localStorage.setItem("savedSearchCheckBoxState", !checkes.searchCheckBoxState);
       setSavedMovies(handleGetFilteredMovies(JSON.parse(localStorage.getItem("savedMovies"))));
     }
@@ -52,7 +52,7 @@ function SearchForm({
           name="searchCheckBoxState"
           type="checkbox"
           onChange={handleChange}
-          checked={checkes.searchCheckBoxState}
+          checked={checkes.searchCheckBoxState || false}
           onClick={handleCheckboxClick}
           />
           <span className="search-form__slider"></span>
