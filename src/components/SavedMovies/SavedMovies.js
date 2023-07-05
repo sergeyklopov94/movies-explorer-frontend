@@ -9,6 +9,7 @@ import useFormWithValidation from "../../hooks/useValidation";
 
 function SavedMovies({
   savedMovies,
+  loggedIn,
   isBurgerMenuOpen,
   onBurgerButtonClick,
   onBurgerLinkClick,
@@ -50,6 +51,7 @@ function SavedMovies({
       />
       <Header
         color="light"
+        loggedIn={loggedIn}
         onBurgerButtonClick={onBurgerButtonClick}
         isBurgerMenuOpen={isBurgerMenuOpen}
       />

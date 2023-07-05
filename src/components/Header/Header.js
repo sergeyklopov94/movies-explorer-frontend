@@ -3,7 +3,7 @@ import Navigation from '../Navigation/Navigation';
 import Logo from '../Logo/Logo';
 import BurgerMenuButton from '../BurgerMenuButton/BurgerMenuButton';
 
-function Header({ color, onBurgerButtonClick, isBurgerMenuOpen, loggedIn }) {
+function Header({ color, loggedIn, onBurgerButtonClick, isBurgerMenuOpen }) {
   return (
     <header className={`header header_theme_${color}`}>
       <Logo/>
@@ -11,7 +11,6 @@ function Header({ color, onBurgerButtonClick, isBurgerMenuOpen, loggedIn }) {
       <BurgerMenuButton
         onBurgerButtonClick={onBurgerButtonClick}
         isBurgerMenuOpen={isBurgerMenuOpen}
-        loggedIn={loggedIn}
       />
     </header>
   );

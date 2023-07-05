@@ -11,6 +11,7 @@ function MoviesCardList({
   onMovieLike,
   getSavedMovies,
   displayedMovies,
+  setDisplayedMovies,
   additionalMovies
 }) {
 
@@ -35,6 +36,7 @@ function MoviesCardList({
     if ((movies.length - finitedMovies.length) !== 0) {
       const newMovies = movies.slice(finitedMovies.length, finitedMovies.length + additionalMovies);
       setFinitedMovies([...finitedMovies, ...newMovies]);
+      setDisplayedMovies(displayedMovies + additionalMovies);
     }
   }
 

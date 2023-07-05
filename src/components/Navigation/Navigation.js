@@ -2,7 +2,7 @@ import './Navigation.css';
 import { Link, useLocation } from 'react-router-dom';
 import ProfileButton from '../ProfileButton/ProfileButton';
 
-function Navigation({loggedIn}) {
+function Navigation({ loggedIn }) {
 
   const location = useLocation();
 

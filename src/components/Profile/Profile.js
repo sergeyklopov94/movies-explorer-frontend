@@ -9,6 +9,7 @@ import Preloader from '../Preloader/Preloader';
 import { USER_NAME_REGEX } from "../../constants/Constants";
 
 function Profile({
+  loggedIn,
   onBurgerButtonClick,
   isBurgerMenuOpen,
   handleLogout,
@@ -60,6 +61,7 @@ function Profile({
       />
       <Header
         color="light"
+        loggedIn={loggedIn}
         onBurgerButtonClick={onBurgerButtonClick}
         isBurgerMenuOpen={isBurgerMenuOpen}
       />

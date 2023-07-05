@@ -30,7 +30,7 @@ function Form({
       <div className="form__inputs-list">
         {children}
       </div>
-      <span className={`form__message ${(formSuccessMessage === "") ? "form__message_type_error" : "form__message_type_success"}`}>{ errorMessage || formSuccessMessage }</span>
+      <span className={`form__message ${(errorMessage === "") ? "form__message_type_success" : "form__message_type_error"}`}>{ errorMessage || formSuccessMessage }</span>
       <button
         className={`form__button ${buttonClassName} ${!isValid ? "form__button_disable" : ""}`}
         type="submit"

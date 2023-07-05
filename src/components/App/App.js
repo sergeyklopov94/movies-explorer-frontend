@@ -87,6 +87,7 @@ function App() {
         localStorage.removeItem("searchCheckBoxState");
         localStorage.removeItem("savedSearchString");
         localStorage.removeItem("savedSearchCheckBoxState");
+        localStorage.setItem("loggedIn", false);
         setErrorMessage("");
         setFormErrorMessage("");
         setFormSuccessMessage("");
@@ -123,6 +124,7 @@ function App() {
         if (res) {
           setCurrentUser(res);
           setLoggedIn(true);
+          localStorage.setItem("loggedIn", true);
         }
       })
       .catch((err) => {
