@@ -6,6 +6,16 @@ import MoviesCardList from '../MoviesCardList/MoviesCardList';
 import SearchForm from '../SearchForm/SearchForm';
 import './Movies.css';
 import useFormWithValidation from "../../hooks/useValidation";
+import {
+  SIZE_L,
+  SIZE_S,
+  DISPLAYED_MOVIES_SIZE_L,
+  DISPLAYED_MOVIES_SIZE_M,
+  DISPLAYED_MOVIES_SIZE_S,
+  ADDITIONAL_MOVIES_SIZE_L,
+  ADDITIONAL_MOVIES_SIZE_M,
+  ADDITIONAL_MOVIES_SIZE_S,
+ } from '../../constants/Constants';
 
 function Movies({
   movies,
@@ -24,6 +34,10 @@ function Movies({
  }) {
 
   const { values, checkes, handleChange, resetForm } = useFormWithValidation();
+
+  const [windowSize, setWindowSize] = React.useState(SIZE_L);
+  const [displayedMovies, setDisplayedMovies] = React.useState(DISPLAYED_MOVIES_SIZE_L);
+  const [additionalMovies, setAdditionalMovies] = React.useState(ADDITIONAL_MOVIES_SIZE_L);
 
   React.useEffect(() => {
     const searchString = localStorage.getItem("searchString");
@@ -44,6 +58,25 @@ function Movies({
     if (localStorage.getItem("movies") !== null)
       setFilteredMovies(handleGetFilteredMovies(JSON.parse(localStorage.getItem("movies"))));
   }, []);
+
+  React.useEffect(() => {
+    setWindowSize(window.screen.width);
+  }, []);
+
+  React.useEffect(() => {
+    let moviesToDisplay = 0;
+    if (windowSize >= SIZE_L) {
+      moviesToDisplay = DISPLAYED_MOVIES_SIZE_L;
+      setAdditionalMovies(ADDITIONAL_MOVIES_SIZE_L);
+    } else if (windowSize >= SIZE_S) {
+      moviesToDisplay = DISPLAYED_MOVIES_SIZE_M;
+      setAdditionalMovies(ADDITIONAL_MOVIES_SIZE_M);
+    } else if (windowSize < SIZE_S) {
+      moviesToDisplay = DISPLAYED_MOVIES_SIZE_S;
+      setAdditionalMovies(ADDITIONAL_MOVIES_SIZE_S);
+    }
+    setDisplayedMovies(moviesToDisplay);
+  }, [windowSize]);
 
   return (
     <>
@@ -69,6 +102,8 @@ function Movies({
         />
         <MoviesCardList
           movies={movies}
+          displayedMovies={displayedMovies}
+          additionalMovies={additionalMovies}
           isLoading={isLoading}
           allMoviesError={allMoviesError}
           onMovieLike={onMovieLike}

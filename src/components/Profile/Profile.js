@@ -6,6 +6,7 @@ import BurgerMenu from '../BurgerMenu/BurgerMenu';
 import {CurrentUserContext} from '../../contexts/CurrentUserContext';
 import useFormWithValidation from "../../hooks/useValidation";
 import Preloader from '../Preloader/Preloader';
+import { USER_NAME_REGEX } from "../../constants/Constants";
 
 function Profile({
   onBurgerButtonClick,
@@ -91,6 +92,7 @@ function Profile({
                   placeholder="Введите имя..."
                   readOnly={isEdit ? false : true}
                   onChange={handleChange}
+                  pattern={ USER_NAME_REGEX }
                   required>
                 </input>
               </label>

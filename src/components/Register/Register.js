@@ -6,6 +6,7 @@ import './Register.css';
 import useFormWithValidation from "../../hooks/useValidation";
 import { Navigate } from 'react-router-dom';
 import Preloader from '../Preloader/Preloader';
+import { USER_NAME_REGEX } from "../../constants/Constants";
 
 function Register({
   handleRegister,
@@ -52,6 +53,7 @@ function Register({
                 placeholder="Введите имя..."
                 onChange={handleChange}
                 value={values.name || ""}
+                pattern={USER_NAME_REGEX}
                 required>
               </input>
               <span className="form__info-error">{errors.name || ""}</span>

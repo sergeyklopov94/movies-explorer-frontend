@@ -90,6 +90,7 @@ function App() {
         setErrorMessage("");
         setFormErrorMessage("");
         setFormSuccessMessage("");
+        setAllMoviesError(false);
       })
       .catch((err) => {
         console.log(err);
@@ -243,9 +244,12 @@ function App() {
     );
     await mainApi.deleteMovie(savedMovie._id)
       .then((res) => {
+        const newSavedMovies = savedMovies.filter((savedMovie) => savedMovie._id !== movie._id);
         setSavedMovies(
-          savedMovies.filter((savedMovie) => savedMovie._id !== movie._id)
+          newSavedMovies
         );
+        localStorage.setItem("savedMovies", JSON.stringify(newSavedMovies));
+        console.log(newSavedMovies);
       })
       .catch((err) => {
         console.log(err);
