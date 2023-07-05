@@ -20,7 +20,7 @@ CRA
 
 Адрес репозитория: https://github.com/sergeyklopov94/movies-explorer-frontend
 
-Адрес фронтенда: https://sergklo94.nomoredomains.rocks/
+Адрес фронтенда: http://sergklo94-movies.nomoreparties.sbs/
 
 ## Ссылки
 
