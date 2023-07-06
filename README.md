@@ -16,7 +16,7 @@ Webpack.
 CRA
 Верстка проекта создана при помощи HTML5 и CSS3 версий. Функционал реализован при помощи JavaScript. Проект создан на React.
 
-Статус проекта: окончен.
+Статус проекта: завершен.
 
 Адрес репозитория: https://github.com/sergeyklopov94/movies-explorer-frontend
 

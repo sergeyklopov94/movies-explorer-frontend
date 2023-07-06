@@ -1,4 +1,5 @@
 export const USER_NAME_REGEX = "^[A-Za-zА-Яа-яЁё\\-\\s]+$";
+export const SHORT_MOVIE_DURATION = 40;
 export const SIZE_L = 1280;
 export const SIZE_M = 989;
 export const SIZE_S = 480;
