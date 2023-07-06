@@ -81,6 +81,7 @@ function App() {
         navigate('/', {replace: true});
         setFilteredMovies([]);
         localStorage.removeItem("movies");
+        localStorage.removeItem("savedMovies");
         localStorage.removeItem("filteredMovies");
         localStorage.removeItem("filteredShortMovies");
         localStorage.removeItem("searchString");
