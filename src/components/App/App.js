@@ -260,7 +260,8 @@ function App() {
   }
 
   function getSavedMovies(movie, setSelectedMovie) {
-    const savedMovie = savedMovies.find(
+    let allSavedMovies = JSON.parse(localStorage.getItem("savedMovies"));
+    const savedMovie = allSavedMovies.find(
       (savedMovie) => savedMovie.movieId === movie.id || savedMovie.movieId === movie.movieId
     );
     if (savedMovie)
