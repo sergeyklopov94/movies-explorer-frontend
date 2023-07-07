@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { USER_EMAIL_REGEX } from "../constants/Constants";
 
 export default function useFormWithValidation() {
 
@@ -12,6 +13,12 @@ export default function useFormWithValidation() {
     const name = target.name;
     const value = target.value;
     const check = target.checked;
+    if (name === "email" && !value.match(USER_EMAIL_REGEX)) {
+      target.setCustomValidity("Введен не валидный адрес электронной почты");
+    }
+    else {
+      target.setCustomValidity("");
+    }
     setValues({...values, [name]: value});
     setChecked({...checkes, [name]: check});
     setErrors({...errors, [name]: target.validationMessage });
