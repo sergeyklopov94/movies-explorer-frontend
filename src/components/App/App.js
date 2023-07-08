@@ -38,6 +38,7 @@ function App() {
   function handleLogin(formValue) {
     const { email, password } = formValue;
     setIsLoading(true);
+    setAllMoviesError(false);
     mainApi.authorize(email, password)
       .then((res) => {
         if (res) {
