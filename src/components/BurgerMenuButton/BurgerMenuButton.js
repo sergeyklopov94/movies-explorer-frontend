@@ -1,18 +1,18 @@
-import { useLocation } from 'react-router-dom';
 import './BurgerMenuButton.css';
 
-function BurgerMenuButton({onBurgerButtonClick, isBurgerMenuOpen}) {
+function BurgerMenuButton({ onBurgerButtonClick, isBurgerMenuOpen }) {
 
-  const location = useLocation();
-
-  const burgerMenuButtonClassName = (location.pathname === "/") ?
+  const burgerMenuButtonClassName = (!JSON.parse(localStorage.getItem("loggedIn"))) ?
   ("burger-menu-button burger-menu-button_invisible"):
   (isBurgerMenuOpen)?
   ( "burger-menu-button burger-menu-button_type_x" ) :
   ( "burger-menu-button burger-menu-button_type_lines");
 
   return (
-    <button className={burgerMenuButtonClassName} onClick={onBurgerButtonClick}></button>
+    <button
+      className={burgerMenuButtonClassName}
+      onClick={onBurgerButtonClick}>
+    </button>
   );
 }
 

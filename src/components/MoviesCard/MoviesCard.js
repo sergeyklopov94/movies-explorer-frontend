@@ -3,11 +3,10 @@ import { useLocation } from 'react-router-dom';
 import DecorLine from '../DecorLine/DecorLine';
 import './MoviesCard.css';
 
-function MoviesCard({ movie }) {
+function MoviesCard({ movie, onMovieLike, getSavedMovies }) {
 
   const location = useLocation();
 
-  // временное решение для проверки активного состояния лайка
   const [isLiked, setSelectedMovie] = React.useState(false);
 
   const movieCardButtonClassName = (location.pathname === "/movies" && isLiked) ?
@@ -16,21 +15,45 @@ function MoviesCard({ movie }) {
   ( "movies-card__button_type_like") :
   ( "movies-card__button_type_delete");
 
+  const movieImageSrcClassName = (location.pathname === "/movies") ?
+  (`https://api.nomoreparties.co${movie.image.url}`) :
+  (`${movie.image}`);
+
   function handleMovieClick() {
-    if (!isLiked)
-      setSelectedMovie(true);
-    else setSelectedMovie(false);
+    onMovieLike(movie, isLiked, setSelectedMovie);
+  }
+
+  React.useEffect(() => {
+    if (location.pathname === "/movies") {
+      getSavedMovies(movie, setSelectedMovie);
+    }
+  }, []);
+
+  function calculateDuration(duration) {
+    const hours = Math.trunc(duration/60);
+    const minutes = duration - hours * 60;
+    if(hours === 0) {
+      return `${minutes}м`;
+    } else
+      return `${hours}ч ${minutes}м`;
   }
 
   return (
     <li className="movies-card">
-      <img className="movies-card__image" src={ movie.image } alt={ movie.name }/>
+      <a
+        href={ movie.trailerLink }
+        className="movies-card__link"
+        target="_blank"
+        rel="noreferrer"
+      >
+        <img className="movies-card__image" src={movieImageSrcClassName} alt={ movie.nameRU }/>
+      </a>
       <div className="movies-card__info">
-        <h2 className="movies-card__name">{ movie.name }</h2>
+        <h2 className="movies-card__name">{ movie.nameRU }</h2>
         <button className={`movies-card__button ${movieCardButtonClassName}`} type="button" onClick={ handleMovieClick }></button>
       </div>
       <DecorLine color="light"/>
-      <p className="movies-card__time">{ movie.duration }</p>
+      <p className="movies-card__time">{ calculateDuration(movie.duration) }</p>
     </li>
   );
 }

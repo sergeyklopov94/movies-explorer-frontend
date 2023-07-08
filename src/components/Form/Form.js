@@ -1,7 +1,17 @@
 import { useLocation } from 'react-router-dom';
 import './Form.css';
+import React from 'react';
 
-function Form({ children, isEdit, buttonText }) {
+function Form({
+  children,
+  isEdit,
+  buttonText,
+  handleSubmit,
+  errorMessage,
+  handleClick,
+  isValid,
+  formSuccessMessage
+}) {
 
   const location = useLocation();
 
@@ -10,15 +20,23 @@ function Form({ children, isEdit, buttonText }) {
   ( "form");
 
   const buttonClassName = (location.pathname === "/profile" && !isEdit) ?
-  ( "form__button form__button_invisible" ) :
-  ( "form__button");
+  ( "form__button_invisible" ) :
+  ( "");
 
   return (
-    <form className={ formClassName }>
+    <form
+      className={ formClassName }
+      onSubmit={ handleSubmit }>
       <div className="form__inputs-list">
         {children}
       </div>
-      <button className={buttonClassName} type="submit">{buttonText}</button>
+      <span className={`form__message ${(errorMessage === "") ? "form__message_type_success" : "form__message_type_error"}`}>{ errorMessage || formSuccessMessage }</span>
+      <button
+        className={`form__button ${buttonClassName} ${!isValid ? "form__button_disable" : ""}`}
+        type="submit"
+        onClick={handleClick}>
+          {buttonText}
+      </button>
     </form>
   );
 }

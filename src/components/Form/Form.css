@@ -14,30 +14,46 @@
   flex-grow: 1;
 }
 
+.form__inputs-list {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
 .form__input-container {
+  width: 100%;
+  box-sizing: border-box;
+  position: relative;
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #e8e8e8;
   margin: 0;
   padding: 17px 0 16px;
 }
 
 .form__input-container:last-of-type {
   margin-bottom: 220px;
-  padding: 17px 0 0;
+  padding: 27px 0 16px;
+  border-bottom: none;
 }
 
 .form__input-label {
-  color: #a0a0a0;
+  position: relative;
 }
 
 .form__input-label_type_auth {
+  color: #a0a0a0;
   font-size: 10px;
   line-height: 12px;
+  margin-bottom: 34px;
 }
 
 .form__input-label_type_profile {
+  width: 100%;
+  display: flex;
   white-space: nowrap;
   font-weight: 500;
+  color: #000;
   font-size: 11px;
   line-height: 13px;
 }
@@ -48,13 +64,21 @@
   border-bottom: 1px solid #e8e8e8;
   font-size: 14px;
   line-height: 17px;
-  margin: 0 0 24px;
-  padding: 5px 0 10px;
+  margin: 0;
   outline: none;
 }
 
-.form__input:focus {
+.form__input_type_error {
+  color: #ee3465;
+}
+
+.form__input_type_auth {
+  padding: 5px 0 10px;
+}
+
+.form__input_type_auth:focus {
   font-weight: 500;
+  border-bottom: 1px solid #2be080;
 }
 
 .form__input_type_profile {
@@ -65,7 +89,40 @@
   line-height: 13px;
   text-align: end;
   margin: 0;
+  padding: 0;
   outline: none;
+}
+
+.form__input_type_profile:focus {
+  font-weight: 500;
+}
+
+.form__input_type_profile:read-only:focus {
+  font-weight: 400;
+}
+
+.form__info-error {
+  color: #ee3465;
+  font-size: 10px;
+  padding: 0;
+  margin: 0;
+  position: absolute;
+  top: calc(100% + 5px);
+  left: 0;
+}
+
+.form__message {
+  padding: 0;
+  text-align: center;
+  font-size: 11px;
+}
+
+.form__message_type_error {
+  color: #ee3465;
+}
+
+.form__message_type_success {
+  color: #2be080;
 }
 
 .form__button {
@@ -81,6 +138,7 @@
   text-align: center;
   color: #fff;
   cursor: pointer;
+  margin-top: 20px;
   transition: .5s ease;
 }
 
@@ -90,6 +148,12 @@
 
 .form__button_invisible {
   display: none;
+}
+
+.form__button_disable {
+  background: #f8f8f8;
+  color: #c2c2c2;
+  pointer-events: none;
 }
 
 @media screen and (max-width: 904px){
@@ -113,6 +177,10 @@
 
   .form__input-container:last-of-type {
     margin-bottom: 379px;
+  }
+
+  .form__input-label_type_auth {
+    margin-bottom: 45px;
   }
 
   .form__button {
